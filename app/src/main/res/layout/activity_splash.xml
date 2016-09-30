@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    >
+    xmlns:pv="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_activity_splash">
 
-    <ImageView
-        android:id="@+id/logo_outer_iv"
-        android:layout_width="120dp"
+    <com.snail.ui.widget.particleview.ParticleView
+        android:id="@+id/pv_1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher_outer"/>
-
-    <TextView
-        android:id="@+id/logo_inner_tv"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textStyle="bold|italic"
-        android:textSize="35sp"
-        android:layout_gravity="center"
-        android:text="@string/app_name"
-        tools:alpha="1"/>
+        pv:pv_particle_text_size="60sp"
+        pv:pv_particle_text="Snail" />
 
 </FrameLayout>

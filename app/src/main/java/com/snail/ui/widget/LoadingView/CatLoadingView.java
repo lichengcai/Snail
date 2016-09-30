@@ -11,7 +11,8 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 
-import net.koo.R;
+import com.snail.R;
+
 
 //import net.koo.R;
 

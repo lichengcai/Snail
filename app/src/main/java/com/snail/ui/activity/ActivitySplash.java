@@ -1,14 +1,11 @@
 package com.snail.ui.activity;
 
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import android.view.Window;
+import android.view.WindowManager;
 import com.snail.R;
+import com.snail.ui.widget.particleview.ParticleView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,59 +15,39 @@ import butterknife.ButterKnife;
  */
 
 public class ActivitySplash extends ActivityBase {
-    @BindView(R.id.logo_outer_iv)
-    ImageView mLogoOuterIv;
-    @BindView(R.id.logo_inner_tv)
-    TextView mLogoInnerTv;
-
-    boolean isShowingRubberEffect = false;
-
+    @BindView(R.id.pv_1)
+    ParticleView mParticleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //取消标题
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //取消状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
 
-        initAnimation();
-    }
-
-
-    private void initAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this,R.anim.anim_top_in);
-        mLogoInnerTv.startAnimation(animation);
-        animation.setAnimationListener(new Animation.AnimationListener() {
+        //执行动画
+        mParticleView.postDelayed(new Runnable() {
             @Override
-            public void onAnimationStart(Animation animation) {
-
+            public void run() {
+                mParticleView.startAnim();
             }
+        }, 1000);
 
+        //动画监听
+        mParticleView.setOnParticleAnimListener(new ParticleView.ParticleAnimListener() {
             @Override
-            public void onAnimationEnd(Animation animation) {
+            public void onAnimationEnd() {
                 ActivitySplash.this.startActivity(new Intent(ActivitySplash.this,ActivityLogin.class));
                 ActivitySplash.this.finish();
             }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0,1);
-        valueAnimator.setDuration(1000);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float fraction = animation.getAnimatedFraction();
-                float currentValue = (float) animation.getAnimatedValue();
-                if (fraction >= 0.8 && !isShowingRubberEffect) {
-                    isShowingRubberEffect = true;
-
-                }
-            }
         });
     }
+
+
 
 
 }

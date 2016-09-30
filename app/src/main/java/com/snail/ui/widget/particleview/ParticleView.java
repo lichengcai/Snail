@@ -16,7 +16,8 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 
-import net.koo.R;
+
+import com.snail.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -95,7 +96,7 @@ public class ParticleView extends View {
         mHostText = null == typeArray.getString(R.styleable.ParticleView_pv_host_text) ? "" : typeArray.getString(R.styleable.ParticleView_pv_host_text);
         mParticleText = null == typeArray.getString(R.styleable.ParticleView_pv_particle_text) ? "" : typeArray.getString(R.styleable.ParticleView_pv_particle_text);
         mParticleTextSize = (int) typeArray.getDimension(R.styleable.ParticleView_pv_particle_text_size, DEFAULT_MIN_TEXT_SIZE);
-        mBgColor = typeArray.getColor(R.styleable.ParticleView_pv_background_color, 0xFF0867AB);
+        mBgColor = typeArray.getColor(R.styleable.ParticleView_pv_background_color, getResources().getColor(R.color.white));
         mParticleColor = typeArray.getColor(R.styleable.ParticleView_pv_text_color, 0xFFCEF4FD);
         typeArray.recycle();
 
@@ -105,7 +106,7 @@ public class ParticleView extends View {
         mParticleTextPaint.setColor(mBgColor);
         mHostTextPaint.setColor(mBgColor);
         mCirclePaint.setColor(mParticleColor);
-        mHostBgPaint.setColor(mParticleColor);
+        mHostBgPaint.setColor(getResources().getColor(R.color.transparent));
 
     }
 
