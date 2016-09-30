@@ -14,7 +14,12 @@
             android:text="test"
             android:id="@+id/testbtn"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="50dp" />
+        <Button
+            android:text="test upload image"
+            android:id="@+id/image_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_home"
             android:layout_width="match_parent"
@@ -37,15 +42,16 @@
         android:id="@+id/mFloatingActionButton"
         android:layout_gravity="end|bottom"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="78dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:src="@drawable/btn_tab_picture"
         android:elevation="6dp"
         app:pressedTranslationZ="12dp"
         app:fabSize="normal"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp" />
 
 </RelativeLayout>
