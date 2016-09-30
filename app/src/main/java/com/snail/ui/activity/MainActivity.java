@@ -1,9 +1,6 @@
 package com.snail.ui.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Bundle;
@@ -13,9 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -23,16 +18,15 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
-import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.ProgressCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.snail.R;
-import com.snail.ui.adapter.FirstPagerAdapter;
+import com.snail.adapter.FirstPagerAdapter;
+import com.snail.transforms.CubeOutTransformer;
 import com.snail.ui.fragment.FragmentHome;
 import com.snail.ui.fragment.FragmentMore;
 import com.snail.ui.fragment.FragmentWrite;
-import com.snail.ui.transforms.CubeOutTransformer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -58,7 +52,7 @@ public class MainActivity extends ActivityBase {
     /**
      * ViewPager 适配器
      */
-    FirstPagerAdapter mAdapter;
+   FirstPagerAdapter mAdapter;
     /**
      * 首次点击返回键时间
      */
@@ -98,16 +92,7 @@ public class MainActivity extends ActivityBase {
             e.printStackTrace();
 
         }
-        initLeanCloud();
         initBindEvent();
-    }
-
-    /**
-     * 初始化leancloud 云存储
-     */
-    private void initLeanCloud() {
-        // this appid, appkey 这里的appkey 是具体应用的key
-        AVOSCloud.initialize(this, "3wWw917QhhjFgz8CrIUuMnhK-gzGzoHsz", "uKedxWMG4fnrPbI4v7ToXfbv");
     }
 
     /**
@@ -160,17 +145,6 @@ public class MainActivity extends ActivityBase {
         });
     }
 
-    /**
-     * 控件初始化
-     */
-    private void initView() {
-        mViewPager = (ViewPager) findViewById(R.id.vp_home);
-        mBottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
-        mFloatingActionButton = (FloatingActionButton) findViewById(R.id.mFloatingActionButton
-        );
-
-        setAllListener();
-    }
 
     /**
      * 设置监听事件

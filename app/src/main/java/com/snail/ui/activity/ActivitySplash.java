@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import com.snail.R;
-import com.snail.ui.widget.particleview.ParticleView;
+import com.snail.widget.particleview.ParticleView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 
 public class ActivitySplash extends ActivityBase {
     @BindView(R.id.pv_1)
-    ParticleView mParticleView;
+    com.snail.widget.particleview.ParticleView mParticleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class ActivitySplash extends ActivityBase {
         mParticleView.setOnParticleAnimListener(new ParticleView.ParticleAnimListener() {
             @Override
             public void onAnimationEnd() {
-                ActivitySplash.this.startActivity(new Intent(ActivitySplash.this,ActivityLogin.class));
+                ActivitySplash.this.startActivity(new Intent(ActivitySplash.this,MainActivity.class));
                 ActivitySplash.this.finish();
             }
         });

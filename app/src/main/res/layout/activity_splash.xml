@@ -5,7 +5,7 @@
     xmlns:pv="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_activity_splash">
 
-    <com.snail.ui.widget.particleview.ParticleView
+    <com.snail.widget.particleview.ParticleView
         android:id="@+id/pv_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
