@@ -6,12 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Bundle;
+import android.os.Process;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -31,7 +31,6 @@ import com.snail.R;
 import com.snail.ui.adapter.FirstPagerAdapter;
 import com.snail.ui.fragment.FragmentHome;
 import com.snail.ui.fragment.FragmentMore;
-import com.snail.ui.fragment.FragmentThree;
 import com.snail.ui.fragment.FragmentWrite;
 import com.snail.ui.transforms.CubeOutTransformer;
 
@@ -41,28 +40,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends ActivityBase {
     private static final int REQUEST_CODE_CAMERA = 0;
-    /**
-     * FloatingActionButton
-     */
-    private FloatingActionButton mFloatingActionButton;
-    /**
-     * ViewPager 适配器
-     */
-    FirstPagerAdapter mAdapter;
-    /**
-     * ViewPager
-     */
-    private ViewPager mViewPager;
-    /**
-     * 底部导航栏
-     */
-    private BottomNavigationBar mBottomNavigationBar;
+    @BindView(R.id.vp_home)
+    ViewPager mViewPager;
+    @BindView(R.id.bottom_navigation_bar)
+    BottomNavigationBar mBottomNavigationBar;
+    @BindView(R.id.mFloatingActionButton)
+    FloatingActionButton mFloatingActionButton;
     /**
      * Fragment集合
      */
     private ArrayList<Fragment> mFragmentList = new ArrayList<>();
+    /**
+     * ViewPager 适配器
+     */
+    FirstPagerAdapter mAdapter;
     /**
      * 首次点击返回键时间
      */
@@ -77,6 +73,7 @@ public class MainActivity extends ActivityBase {
         setContentView(R.layout.activity_main);
         btn = (Button) findViewById(R.id.testbtn);
         imgBtn = (Button) findViewById(R.id.image_btn);
+        ButterKnife.bind(this);
         init();
     }
 
@@ -84,19 +81,19 @@ public class MainActivity extends ActivityBase {
      * 初始化
      */
     private void init() {
-        initView();
+        setAllListener();
 
-        mBottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.btn_tab_home_normal,"Home"))
-                .addItem(new BottomNavigationItem(R.drawable.btn_tab_wrong_normal,"Write"))
-                .addItem(new BottomNavigationItem(R.drawable.btn_tab_more_normal,"More")).initialise();
+        mBottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.btn_tab_home_normal, "Home"))
+                .addItem(new BottomNavigationItem(R.drawable.btn_tab_wrong_normal, "Write"))
+                .addItem(new BottomNavigationItem(R.drawable.btn_tab_more_normal, "More")).initialise();
         mFragmentList.add(new FragmentHome());
         mFragmentList.add(new FragmentWrite());
         mFragmentList.add(new FragmentMore());
 
-        mAdapter = new FirstPagerAdapter(getSupportFragmentManager(),mFragmentList);
+        mAdapter = new FirstPagerAdapter(getSupportFragmentManager(), mFragmentList);
         mViewPager.setAdapter(mAdapter);
         try {
-            mViewPager.setPageTransformer(true,new TransformerItem(CubeOutTransformer.class).clazz.newInstance());
+            mViewPager.setPageTransformer(true, new TransformerItem(CubeOutTransformer.class).clazz.newInstance());
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -214,7 +211,7 @@ public class MainActivity extends ActivityBase {
         mBottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position) {
-                Log.d("tag","on tab selected---" + position);
+                Log.d("tag", "on tab selected---" + position);
                 mViewPager.setCurrentItem(position);
             }
 
@@ -258,7 +255,7 @@ public class MainActivity extends ActivityBase {
      */
     public void exitApp() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            Toast.makeText(MainActivity.this,"再按一次退出程序",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
             exitTime = System.currentTimeMillis();
         } else {
             Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -266,7 +263,7 @@ public class MainActivity extends ActivityBase {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
-            android.os.Process.killProcess(android.os.Process.myPid());
+            Process.killProcess(Process.myPid());
         }
     }
 
