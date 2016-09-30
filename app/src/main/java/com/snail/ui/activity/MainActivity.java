@@ -86,44 +86,8 @@ public class MainActivity extends ActivityBase {
             e.printStackTrace();
 
         }
-        initLeanCloud();
-        initBindEvent();
     }
 
-    /**
-     * 初始化leancloud 云存储
-     */
-    private void initLeanCloud() {
-        // this appid, appkey 这里的appkey 是具体应用的key
-        AVOSCloud.initialize(this, "3wWw917QhhjFgz8CrIUuMnhK-gzGzoHsz", "uKedxWMG4fnrPbI4v7ToXfbv");
-    }
-
-    /**
-     * 测试 leancloud 插入数据的操作
-     */
-    private void initBindEvent() {
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 测试 SDK 是否正常工作的代码
-                Log.d("btnclick","btnclick!");
-                AVObject testObject = new AVObject("_User");
-//                testObject.put("words","Hello World!");
-                testObject.put("username","shibiaoz");
-                testObject.put("password","123");
-                testObject.put("mobilePhoneNumber","18513622821");
-                testObject.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(AVException e) {
-                        Log.d("btndone","btnclick-----");
-                        if(e == null){
-                            Log.d("saved","success!");
-                        }
-                    }
-                });
-            }
-        });
-    }
 
     /**
      * 控件初始化
