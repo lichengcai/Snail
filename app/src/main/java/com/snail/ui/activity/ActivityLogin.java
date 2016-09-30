@@ -1,6 +1,9 @@
 package com.snail.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.snail.R;
 
@@ -13,5 +16,14 @@ public class ActivityLogin extends ActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Button loginBtn = (Button) findViewById(R.id.login);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityLogin.this.startActivity(new Intent(ActivityLogin.this,MainActivity.class));
+                ActivityLogin.this.finish();
+            }
+        });
+
     }
 }
