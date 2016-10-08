@@ -32,13 +32,14 @@ public class FragmentHome extends Fragment {
     private void initGridView(View view) {
         gridview = (GridView) view.findViewById(R.id.GridView);
         ArrayList<HashMap<String, Object>> meumList = new ArrayList<HashMap<String, Object>>();
-        for(int i = 1;i < 10;i++)
-        {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("ItemImage", R.drawable.rulers);
-            map.put("ItemText", ""+i);
-            meumList.add(map);
-        }
+//        for(int i = 1;i < 10;i++)
+//        {
+//            HashMap<String, Object> map = new HashMap<String, Object>();
+//            map.put("ItemImage", R.drawable.rulers);
+//            map.put("ItemText", ""+i);
+//            meumList.add(map);
+//        }
+        initMenuList(meumList);
         SimpleAdapter saItem = new SimpleAdapter(getActivity(),
                 meumList, //数据源
                 R.layout.item, //xml实现
@@ -55,10 +56,68 @@ public class FragmentHome extends Fragment {
                     {
                         int index=arg2+1;//id是从0开始的，所以需要+1
                         Toast.makeText(getActivity(), "你按下了选项："+index, Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(getApplicationContext(), "你按下了选项："+index, 0).show();
-                        //Toast用于向用户显示一些帮助/提示
                     }
                 }
         );
     }
+
+    private void initMenuList(ArrayList<HashMap<String, Object>> meumList) {
+        // map1 错误回顾
+        HashMap<String, Object> map1 = new HashMap<String, Object>();
+        map1.put("ItemImage", R.drawable.palace_1);
+        map1.put("ItemText", "错误回顾");
+        meumList.add(map1);
+
+        // map2 今日闯关
+        HashMap<String, Object> map2 = new HashMap<String, Object>();
+        map2.put("ItemImage", R.drawable.palace_2);
+        map2.put("ItemText", "今日闯关");
+        meumList.add(map2);
+
+
+        // map3 高频单词
+        HashMap<String, Object> map3 = new HashMap<String, Object>();
+        map3.put("ItemImage", R.drawable.palace_3);
+        map3.put("ItemText", "高频单词");
+        meumList.add(map3);
+
+
+        // map4 备忘录
+        HashMap<String, Object> map4 = new HashMap<String, Object>();
+        map4.put("ItemImage", R.drawable.palace_4);
+        map4.put("ItemText", "备忘录");
+        meumList.add(map4);
+
+        // map5 题库
+        HashMap<String, Object> map5 = new HashMap<String, Object>();
+        map5.put("ItemImage", R.drawable.palace_5);
+        map5.put("ItemText", "题库");
+        meumList.add(map5);
+
+        // map6 题库
+        HashMap<String, Object> map6 = new HashMap<String, Object>();
+        map6.put("ItemImage", R.drawable.palace_6);
+        map6.put("ItemText", "互助问答");
+        meumList.add(map6);
+
+
+        // map7 题库
+        HashMap<String, Object> map7 = new HashMap<String, Object>();
+        map7.put("ItemImage", R.drawable.palace_7);
+        map7.put("ItemText", "轻松一下");
+        meumList.add(map7);
+
+        // map8 题库
+        HashMap<String, Object> map8 = new HashMap<String, Object>();
+        map8.put("ItemImage", R.drawable.palace_8);
+        map8.put("ItemText", "推荐书籍");
+        meumList.add(map8);
+
+        // map9 题库
+        HashMap<String, Object> map9 = new HashMap<String, Object>();
+        map9.put("ItemImage", R.drawable.palace_9);
+        map9.put("ItemText", "News");
+        meumList.add(map9);
+    }
+
 }
