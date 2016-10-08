@@ -10,16 +10,17 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <Button
-            android:text="test"
-            android:id="@+id/testbtn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-        <Button
-            android:text="test upload image"
-            android:id="@+id/image_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
+
+        <!--<Button-->
+            <!--android:text="test"-->
+            <!--android:id="@+id/testbtn"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp" />-->
+        <!--<Button-->
+            <!--android:text="test upload image"-->
+            <!--android:id="@+id/image_btn"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp" />-->
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_home"
             android:layout_width="match_parent"

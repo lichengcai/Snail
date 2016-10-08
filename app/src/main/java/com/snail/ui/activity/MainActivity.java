@@ -11,7 +11,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -65,8 +68,8 @@ public class MainActivity extends ActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn = (Button) findViewById(R.id.testbtn);
-        imgBtn = (Button) findViewById(R.id.image_btn);
+//        btn = (Button) findViewById(R.id.testbtn);
+//        imgBtn = (Button) findViewById(R.id.image_btn);
         ButterKnife.bind(this);
         init();
     }
@@ -99,50 +102,49 @@ public class MainActivity extends ActivityBase {
      * 测试 leancloud 插入数据的操作
      */
     private void initBindEvent() {
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 测试 SDK 是否正常工作的代码
-                Log.d("btnclick","btnclick!");
-                AVObject testObject = new AVObject("_User");
-//                testObject.put("words","Hello World!");
-                testObject.put("username","shibiaoz");
-                testObject.put("password","123");
-                testObject.put("mobilePhoneNumber","18513622821");
-                testObject.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(AVException e) {
-                        Log.d("btndone","btnclick-----");
-                        if(e == null){
-                            Log.d("saved","success!");
-                        }
-                    }
-                });
-            }
-        });
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // 测试 SDK 是否正常工作的代码
+//                Log.d("btnclick","btnclick!");
+//                AVObject testObject = new AVObject("_User");
+//                testObject.put("username","shibiaoz");
+//                testObject.put("password","123");
+//                testObject.put("mobilePhoneNumber","18513622821");
+//                testObject.saveInBackground(new SaveCallback() {
+//                    @Override
+//                    public void done(AVException e) {
+//                        Log.d("btndone","btnclick-----");
+//                        if(e == null){
+//                            Log.d("saved","success!");
+//                        }
+//                    }
+//                });
+//            }
+//        });
 
-        imgBtn.setOnClickListener(new View.OnClickListener() {
-            /**
-             * uploadfile from network
-             * @param v
-             */
-            @Override
-            public void onClick(View v) {
-                /**
-                 * below code is test code,
-                 * in some case,must define sure file suffix
-                 * @params sure filename,you should get suffix from http img url
-                 * @parms sure http url,
-                 */
-                final AVFile file = new AVFile("test.gif", "http://ww3.sinaimg.cn/bmiddle/596b0666gw1ed70eavm5tg20bq06m7wi.gif", new HashMap<String, Object>());
-                file.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(AVException e) {
-                        Log.d("savefile", file.getUrl());//返回一个唯一的 Url 地址
-                    }
-                });
-            }
-        });
+//        imgBtn.setOnClickListener(new View.OnClickListener() {
+//            /**
+//             * uploadfile from network
+//             * @param v
+//             */
+//            @Override
+//            public void onClick(View v) {
+//                /**
+//                 * below code is test code,
+//                 * in some case,must define sure file suffix
+//                 * @params sure filename,you should get suffix from http img url
+//                 * @parms sure http url,
+//                 */
+//                final AVFile file = new AVFile("test.gif", "http://ww3.sinaimg.cn/bmiddle/596b0666gw1ed70eavm5tg20bq06m7wi.gif", new HashMap<String, Object>());
+//                file.saveInBackground(new SaveCallback() {
+//                    @Override
+//                    public void done(AVException e) {
+//                        Log.d("savefile", file.getUrl());//返回一个唯一的 Url 地址
+//                    }
+//                });
+//            }
+//        });
     }
 
 

@@ -10,6 +10,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp">
+
         <ImageView
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
@@ -17,6 +18,7 @@
             android:src="@drawable/user_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <EditText
             android:id="@+id/user_name"
             android:background="@color/white"
@@ -57,6 +59,7 @@
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:layout_height="100dp">
+
         <Button
             android:text="LOGIN"
             android:id="@+id/login"
