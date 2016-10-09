@@ -31,8 +31,10 @@
         <activity android:name=".ui.activity.ActivityLogin"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-
             />
+        <activity android:name=".ui.activity.NoteActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"/>
     </application>
 
 

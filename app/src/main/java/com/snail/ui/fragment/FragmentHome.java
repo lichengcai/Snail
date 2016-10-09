@@ -1,5 +1,6 @@
 package com.snail.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.snail.R;
+import com.snail.ui.activity.NoteActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,8 +56,16 @@ public class FragmentHome extends Fragment {
                 {
                     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3)
                     {
-                        int index=arg2+1;//id是从0开始的，所以需要+1
-                        Toast.makeText(getActivity(), "你按下了选项："+index, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();switch (arg2){
+                            case 3:
+                                intent.setClass(getContext(), NoteActivity.class);
+                                startActivity(intent);
+                                break;
+                            default:
+                                int index=arg2+1;//id是从0开始的，所以需要+1
+                                Toast.makeText(getActivity(), "你按下了选项："+index, Toast.LENGTH_SHORT).show();
+                                break;
+                        }
                     }
                 }
         );
