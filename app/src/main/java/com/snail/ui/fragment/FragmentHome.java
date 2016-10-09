@@ -36,7 +36,7 @@ public class FragmentHome extends Fragment {
         ArrayList<HashMap<String, Object>> meumList = new ArrayList<HashMap<String, Object>>();
 //        for(int i = 1;i < 10;i++)
 //        {
-//            HashMap<String, Object> map = new HashMap<String, Object>();
+//            HashMap<String, Object> map = newnote HashMap<String, Object>();
 //            map.put("ItemImage", R.drawable.rulers);
 //            map.put("ItemText", ""+i);
 //            meumList.add(map);

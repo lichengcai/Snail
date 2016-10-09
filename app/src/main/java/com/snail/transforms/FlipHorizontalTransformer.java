@@ -34,7 +34,7 @@ public class FlipHorizontalTransformer extends ABaseTransformer {
     protected void onPostTransform(View page, float position) {
         super.onPostTransform(page, position);
 
-        //resolve problem: new page can't handle click event!
+        //resolve problem: newnote page can't handle click event!
         if (position > -0.5f && position < 0.5f) {
             page.setVisibility(View.VISIBLE);
         } else {

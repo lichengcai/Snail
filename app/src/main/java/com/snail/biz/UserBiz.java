@@ -50,11 +50,11 @@ public class UserBiz {
          * 这里走了弯路,不能通过比对密码的方式来判断登陆,leancloud 已经提供来登陆的api
          * 详情看 https://leancloud.cn/docs/leanstorage_guide-android.html#用户
          */
-//        AVQuery<AVObject> query = new AVQuery<>("_User");
+//        AVQuery<AVObject> query = newnote AVQuery<>("_User");
 //        query.whereEqualTo("username", userName);
 //        query.whereEqualTo("password", password);
 //        Log.d("queryUserByNamePwd",userName + "->" + password);
-//        query.findInBackground(new FindCallback<AVObject>() {
+//        query.findInBackground(newnote FindCallback<AVObject>() {
 //            @Override
 //            public void done(List<AVObject> list, AVException e) {
 //                List<AVObject> priorityEqualsZeroTodos = list;

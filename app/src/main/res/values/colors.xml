@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4</color>
     <color name="white">#ffffff</color>
+    <color name="backcolor">#f4f4f4</color> <!--屏幕底色-->
+    <color name="dividercolor">#d6d6d6</color> <!--分割线-->
 
 
     <color name="bg_activity_splash">#0091ff</color>
