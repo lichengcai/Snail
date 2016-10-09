@@ -13,6 +13,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.snail.R;
+import com.snail.ui.activity.NewsActivity;
 import com.snail.ui.activity.NoteActivity;
 
 import java.util.ArrayList;
@@ -56,9 +57,14 @@ public class FragmentHome extends Fragment {
                 {
                     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3)
                     {
-                        Intent intent = new Intent();switch (arg2){
+                        Intent intent = new Intent();
+                        switch (arg2) {
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);
+                                startActivity(intent);
+                                break;
+                            case 8:
+                                intent.setClass(getContext(), NewsActivity.class);
                                 startActivity(intent);
                                 break;
                             default:
