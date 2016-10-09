@@ -11,20 +11,22 @@ import com.snail.bean.Notes;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by chenzhiwei on 16/10/9.
  */
 public class NoteActivity extends ActivityBase {
-//    @BindView(R.id.recycler_note)
-    private RecyclerView recycler_note;
+    @BindView(R.id.recycler_note)
+    RecyclerView recycler_note;
     private ArrayList<Notes> list4notes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
-        recycler_note = (RecyclerView) findViewById(R.id.recycler_note);
+        ButterKnife.bind(this);
+//        recycler_note = (RecyclerView) findViewById(R.id.recycler_note);
         initList();
         recycler_note.setLayoutManager(new LinearLayoutManager(this));
         NotesRecyclerAdapter notesRecyclerAdapter = new NotesRecyclerAdapter(this, list4notes);
