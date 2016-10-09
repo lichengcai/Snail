@@ -14,6 +14,10 @@ public class Notes {
         this.body = body;
     }
 
+    public Notes() {
+
+    }
+
     public String getTitle() {
         return title;
     }
