@@ -13,6 +13,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.snail.R;
+import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NewsActivity;
 import com.snail.ui.activity.NoteActivity;
 
@@ -61,6 +62,10 @@ public class FragmentHome extends Fragment {
                         switch (arg2) {
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);
+                                startActivity(intent);
+                                break;
+                            case 7:
+                                intent.setClass(getContext(), BookActivity.class);
                                 startActivity(intent);
                                 break;
                             case 8:

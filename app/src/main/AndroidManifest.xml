@@ -36,7 +36,8 @@
             android:name=".ui.activity.NoteActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.NewsActivity"></activity>
+        <activity android:name=".ui.activity.NewsActivity" />
+        <activity android:name=".ui.activity.BookActivity"></activity>
     </application>
 
 </manifest>
