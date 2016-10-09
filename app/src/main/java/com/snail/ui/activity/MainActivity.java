@@ -102,16 +102,16 @@ public class MainActivity extends ActivityBase {
      * 测试 leancloud 插入数据的操作
      */
     private void initBindEvent() {
-//        btn.setOnClickListener(new View.OnClickListener() {
+//        btn.setOnClickListener(newnote View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                // 测试 SDK 是否正常工作的代码
 //                Log.d("btnclick","btnclick!");
-//                AVObject testObject = new AVObject("_User");
+//                AVObject testObject = newnote AVObject("_User");
 //                testObject.put("username","shibiaoz");
 //                testObject.put("password","123");
 //                testObject.put("mobilePhoneNumber","18513622821");
-//                testObject.saveInBackground(new SaveCallback() {
+//                testObject.saveInBackground(newnote SaveCallback() {
 //                    @Override
 //                    public void done(AVException e) {
 //                        Log.d("btndone","btnclick-----");
@@ -123,7 +123,7 @@ public class MainActivity extends ActivityBase {
 //            }
 //        });
 
-//        imgBtn.setOnClickListener(new View.OnClickListener() {
+//        imgBtn.setOnClickListener(newnote View.OnClickListener() {
 //            /**
 //             * uploadfile from network
 //             * @param v
@@ -136,8 +136,8 @@ public class MainActivity extends ActivityBase {
 //                 * @params sure filename,you should get suffix from http img url
 //                 * @parms sure http url,
 //                 */
-//                final AVFile file = new AVFile("test.gif", "http://ww3.sinaimg.cn/bmiddle/596b0666gw1ed70eavm5tg20bq06m7wi.gif", new HashMap<String, Object>());
-//                file.saveInBackground(new SaveCallback() {
+//                final AVFile file = newnote AVFile("test.gif", "http://ww3.sinaimg.cn/bmiddle/596b0666gw1ed70eavm5tg20bq06m7wi.gif", newnote HashMap<String, Object>());
+//                file.saveInBackground(newnote SaveCallback() {
 //                    @Override
 //                    public void done(AVException e) {
 //                        Log.d("savefile", file.getUrl());//返回一个唯一的 Url 地址
@@ -156,7 +156,7 @@ public class MainActivity extends ActivityBase {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this,"FloatingActionButton",Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent();
+//                Intent intent = newnote Intent();
 //                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
 //                MainActivity.this.startActivityForResult(intent,REQUEST_CODE_CAMERA);
 
