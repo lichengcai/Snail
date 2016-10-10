@@ -61,15 +61,11 @@ public class MainActivity extends ActivityBase {
      */
     private long exitTime = 0;
 
-    private Button btn;
-    private Button imgBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        btn = (Button) findViewById(R.id.testbtn);
-//        imgBtn = (Button) findViewById(R.id.image_btn);
         ButterKnife.bind(this);
         init();
     }
