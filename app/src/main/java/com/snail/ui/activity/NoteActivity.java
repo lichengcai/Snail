@@ -31,6 +31,7 @@ import butterknife.ButterKnife;
 public class NoteActivity extends ActivityBase implements View.OnClickListener {
     @BindView(R.id.recycler_note)
     RecyclerView recycler_note;
+
     @BindView(R.id.img_newNote)
     TextView img_newNote;
     private ArrayList<Notes> list4notes = new ArrayList<>();
