@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.snail.R;
+import com.snail.news.model.NewsModelImpl;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +24,8 @@ public class FragmentListNews extends Fragment {
     RecyclerView mRecyclerView;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
+
+    private NewsModelImpl model;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,8 @@ public class FragmentListNews extends Fragment {
         ButterKnife.bind(this,view);
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimaryDark));
 
+        model = new NewsModelImpl();
+        model.getNewsInfo();
         return view;
     }
 
