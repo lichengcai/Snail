@@ -79,7 +79,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
                     Message msg = new Message();
                     msg.obj = bitmap;
                     handler.sendMessage(msg);
-                    //  imageview.setImageBitmap(bitmap);
                     //发送消息，通知UI组件显示图片
                     //关闭输入流
                     is.close();
