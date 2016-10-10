@@ -26,12 +26,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2016/01/03"/>
-        <TextView
-            android:id="@+id/tv_body"
-            android:singleLine="true"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
     </LinearLayout>
     <View
         android:layout_marginTop="10dp"
