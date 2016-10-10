@@ -31,12 +31,23 @@
         <activity
             android:name=".ui.activity.ActivityLogin"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".ui.activity.NoteActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.NotesEditActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.activity.NoteActivity"
+            android:name=".ui.activity.NewsActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.NewsActivity"></activity>
+
+        <activity
+            android:name=".ui.activity.BookActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity android:name=".news.ActivityNews"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"
