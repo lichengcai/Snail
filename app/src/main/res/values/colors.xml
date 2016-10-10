@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+
     <color name="colorAccent">#FF4</color>
     <color name="white">#ffffff</color>
     <color name="backcolor">#f4f4f4</color> <!--屏幕底色-->
@@ -11,4 +12,5 @@
 
     <color name="bg_activity_splash">#0091ff</color>
     <color name="transparent">#00000000</color>
+    <color name="icons">#FFFFFF</color>
 </resources>

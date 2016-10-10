@@ -48,6 +48,10 @@
             android:name=".ui.activity.BookActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+        <activity android:name=".news.ActivityNews"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>

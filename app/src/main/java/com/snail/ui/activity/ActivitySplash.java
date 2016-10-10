@@ -41,7 +41,7 @@ public class ActivitySplash extends ActivityBase {
         mParticleView.setOnParticleAnimListener(new ParticleView.ParticleAnimListener() {
             @Override
             public void onAnimationEnd() {
-                ActivitySplash.this.startActivity(new Intent(ActivitySplash.this,ActivityLogin.class));
+                ActivitySplash.this.startActivity(new Intent(ActivitySplash.this,MainActivity.class));
                 ActivitySplash.this.finish();
             }
         });

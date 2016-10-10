@@ -1,6 +1,5 @@
 package com.snail.ui.activity;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.snail.R;
@@ -23,7 +21,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 
 /**
  * Created by chenzhiwei on 16/10/9.
@@ -41,6 +38,7 @@ public class NoteActivity extends ActivityBase implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
         ButterKnife.bind(this);
+//        recycler_note = (RecyclerView) findViewById(R.id.recycler_note);
         initList();
         initListener();
         recycler_note.setLayoutManager(new LinearLayoutManager(this));

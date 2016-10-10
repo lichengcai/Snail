@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Snail</string>
+
+    <string name="top">头条</string>
+    <string name="education">教育</string>
+    <string name="science">科技</string>
+    <string name="jokes">笑话</string>
 </resources>
