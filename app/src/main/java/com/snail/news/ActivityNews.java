@@ -26,9 +26,9 @@ public class ActivityNews extends ActivityBase {
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
 
-    public static final int NEWS_TYPE_EDUCATION = 0;
-    public static final int NEWS_TYPE_SCIENCE = 1;
-    public static final int NEWS_TYPE_TOP = 2;
+    public static final int NEWS_EDUCATION = 0;
+    public static final int NEWS_SCIENCE = 1;
+    public static final int NEWS_SPORTS = 2;
 
 
 
@@ -45,9 +45,9 @@ public class ActivityNews extends ActivityBase {
         initView();
 
         NewsPagerAdapter adapter = new NewsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(FragmentListNews.newInstance(NEWS_TYPE_EDUCATION),getString(R.string.education));
-        adapter.addFragment(FragmentListNews.newInstance(NEWS_TYPE_SCIENCE),getString(R.string.science));
-        adapter.addFragment(FragmentListNews.newInstance(NEWS_TYPE_TOP),getString(R.string.top));
+        adapter.addFragment(FragmentListNews.newInstance(NEWS_EDUCATION),getString(R.string.education));
+        adapter.addFragment(FragmentListNews.newInstance(NEWS_SCIENCE),getString(R.string.science));
+        adapter.addFragment(FragmentListNews.newInstance(NEWS_SPORTS),getString(R.string.sport));
 
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(adapter);
@@ -57,7 +57,7 @@ public class ActivityNews extends ActivityBase {
     private void initView() {
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.education));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.science));
-        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.top));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.sport));
 
     }
 

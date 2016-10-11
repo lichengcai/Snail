@@ -77,7 +77,7 @@ public class HttpUtils {
         });
     }
 
-    public static void test(String url, LoadCallback loadCallback) {
+    public static void get(String url, LoadCallback loadCallback) {
         getInstance().getRequest(url,loadCallback);
     }
 

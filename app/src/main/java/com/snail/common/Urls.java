@@ -8,6 +8,7 @@ package com.snail.common;
  * Date   : 15/12/13
  */
 public class Urls {
+    public static final String URL_EDUCATION = "http://c.m.163.com/nc/article/list/T1348654060988/0-20.html";
 
     //http://c.m.163.com/nc/article/headline/T1348647909107/0-5.html  头条
 
@@ -24,6 +25,12 @@ public class Urls {
 
     public static final String COMMON_URL = HOST + "nc/article/list/";
 
+    // 体育
+    public static final String SPORTS_ID = "T1348649079062";
+    // 科技
+    public static final String TECH_ID = "T1348649580692";
+    // 教育
+    public static final String EDUCATION_ID = "T1348654225495";
     // 汽车
     public static final String CAR_ID = "T1348654060988";
     // 笑话
