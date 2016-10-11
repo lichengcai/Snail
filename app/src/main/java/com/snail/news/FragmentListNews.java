@@ -12,9 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.snail.R;
 import com.snail.news.adapter.NewsListAdapter;
+import com.snail.news.listener.OnItemClickListener;
+import com.snail.news.listener.OnItemLongClickListener;
 import com.snail.news.model.News;
 import com.snail.news.model.NewsModelImpl;
 import com.snail.news.presenter.NewsListPresenter;
@@ -61,6 +64,21 @@ public class FragmentListNews extends Fragment implements NewsListView{
                 case MSG_GET_NEWS_INFO:
                     Log.d("handleMessage","MSG_GET_NEWS_INFO");
                     frg.mRecyclerView.setAdapter(frg.mAdapter);
+                    frg.mAdapter.setOnItemClickListener(new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Log.d("handleMessage","onItemClick---" + position);
+                            Toast.makeText(frg.getActivity(),"onItemClick---" + position,Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    frg.mAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+                        @Override
+                        public void onItemLongClick(View view, int position) {
+                            Log.d("handleMessage","onItemLongClick---" + position);
+                            Toast.makeText(frg.getActivity(),"onItemLongClick---" + position,Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     break;
             }
         }
@@ -100,12 +118,8 @@ public class FragmentListNews extends Fragment implements NewsListView{
 
     @Override
     public void setNews(ArrayList<News> data) {
-        for (int i=0; i<data.size(); i++) {
-            Log.d("setNews", "arrayList data---" + data.get(i).toString());
-        }
         mAdapter = new NewsListAdapter(getActivity(),data);
         mHandler.sendEmptyMessage(MSG_GET_NEWS_INFO);
-
     }
 
     @Override

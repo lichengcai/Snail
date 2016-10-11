@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.snail.R;
+import com.snail.news.listener.OnItemClickListener;
+import com.snail.news.listener.OnItemLongClickListener;
 import com.snail.news.model.News;
 import com.snail.utils.ImageLoader;
 
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 public class NewsListAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private ArrayList<News> mData;
+    private OnItemLongClickListener mOnItemLongClickListener;
+    private OnItemClickListener mOnItemClickListener;
 
     public NewsListAdapter(Context context,ArrayList<News> mData) {
         this.mContext = context;
@@ -31,13 +35,21 @@ public class NewsListAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.mOnItemLongClickListener = onItemLongClickListener;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new NewsHolder(LayoutInflater.from(mContext).inflate(R.layout.item_news_list,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         News news = mData.get(position);
         Log.d("onBindViewHolder","news toString---" + news.toString());
         if (holder instanceof NewsHolder) {
@@ -45,6 +57,22 @@ public class NewsListAdapter extends RecyclerView.Adapter {
             ((NewsHolder) holder).text_time.setText(news.getPtime());
             ((NewsHolder) holder).text_title.setText(news.getTitle());
             ImageLoader.getInstance().displayImage(mContext,news.getImgsrc(),((NewsHolder) holder).image);
+
+            final int pos = holder.getLayoutPosition();
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onItemClick(holder.itemView,pos);
+                }
+            });
+
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    mOnItemLongClickListener.onItemLongClick(holder.itemView,pos);
+                    return false;
+                }
+            });
         }
     }
 
