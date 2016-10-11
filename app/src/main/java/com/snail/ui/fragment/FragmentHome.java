@@ -12,26 +12,74 @@ import android.widget.GridView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.snail.R;
 import com.snail.news.ActivityNews;
+import com.snail.transforms.CubeOutTransformer;
+import com.snail.transforms.DefaultTransformer;
+import com.snail.transforms.TransformerItem;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
+import com.snail.widget.LocalImageHolderView;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by lichengcai on 2016/9/29.
  */
 
 public class FragmentHome extends Fragment {
+    @BindView(R.id.banner)
+    ConvenientBanner mBanner;
+
+    private ArrayList<Integer> localImages = new ArrayList<Integer>();
     private  GridView gridview;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
+        ButterKnife.bind(this,view);
+
+        initBanner();
         initGridView(view);
         return view;
+    }
+
+    private void initBanner() {
+        for (int i=0; i<7; i++) {
+            localImages.add(getResId("ic_test_" + i, R.drawable.class));
+        }
+        mBanner.setPages(new CBViewHolderCreator<LocalImageHolderView>() {
+
+            @Override
+            public LocalImageHolderView createHolder() {
+                return new LocalImageHolderView();
+            }
+        },localImages)
+        .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
+        mBanner.startTurning(3000);//设置轮播开始自动循环
+        mBanner.setScrollDuration(2000);//设置滑动速度
+        try {
+            mBanner.getViewPager().setPageTransformer(true,new TransformerItem(CubeOutTransformer.class).clazz.newInstance());//设置轮播动画
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int getResId(String variableName, Class<?> c) {
+        try {
+            Field idField = c.getDeclaredField(variableName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
     private void initGridView(View view) {
         gridview = (GridView) view.findViewById(R.id.GridView);

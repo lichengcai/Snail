@@ -27,6 +27,8 @@ import com.avos.avoscloud.SaveCallback;
 import com.snail.R;
 import com.snail.adapter.FirstPagerAdapter;
 import com.snail.transforms.CubeOutTransformer;
+import com.snail.transforms.DefaultTransformer;
+import com.snail.transforms.TransformerItem;
 import com.snail.ui.fragment.FragmentHome;
 import com.snail.ui.fragment.FragmentMore;
 import com.snail.ui.fragment.FragmentWrite;
@@ -85,8 +87,9 @@ public class MainActivity extends ActivityBase {
 
         mAdapter = new FirstPagerAdapter(getSupportFragmentManager(), mFragmentList);
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setOffscreenPageLimit(3);
         try {
-            mViewPager.setPageTransformer(true, new TransformerItem(CubeOutTransformer.class).clazz.newInstance());
+            mViewPager.setPageTransformer(true, new TransformerItem(DefaultTransformer.class).clazz.newInstance());
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -237,25 +240,6 @@ public class MainActivity extends ActivityBase {
             finish();
             Process.killProcess(Process.myPid());
         }
-    }
-
-    /**
-     * ViewPager动画辅助类
-     */
-    private static final class TransformerItem {
-        final String title;
-        final Class<? extends ViewPager.PageTransformer> clazz;
-
-        TransformerItem(Class<? extends ViewPager.PageTransformer> clazz) {
-            this.clazz = clazz;
-            title = clazz.getSimpleName();
-        }
-
-        @Override
-        public String toString() {
-            return title;
-        }
-
     }
 
     /**

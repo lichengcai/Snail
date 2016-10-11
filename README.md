@@ -13,3 +13,6 @@
 ## network
 - [learning](http://m.sohu.com/ca/?channel=learning&index=3)
 - [recommend books](https://frodo.douban.com/jsonp/subject_collection/book_fiction/items?os=ios&for_mobile=1&callback=jsonp3&start=36&count=18&loc_id=0&_=1476104057363);
+
+## ConvenientBanner 首页轮播
+- [github.com](https://github.com/lichengcai/Android-ConvenientBanner)
