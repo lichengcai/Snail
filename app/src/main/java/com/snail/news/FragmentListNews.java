@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.snail.R;
@@ -40,6 +41,10 @@ public class FragmentListNews extends Fragment implements NewsListView{
     RecyclerView mRecyclerView;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.layout_loading)
+    RelativeLayout mLayoutLoading;
+    @BindView(R.id.layout_fail)
+    RelativeLayout mLayoutFail;
 
     private NewsListPresenter mPresenter;
     private NewsListAdapter mAdapter;
@@ -68,6 +73,11 @@ public class FragmentListNews extends Fragment implements NewsListView{
                     if (frg.mSwipeRefreshLayout != null && frg.mSwipeRefreshLayout.isRefreshing()) {
                         frg.mSwipeRefreshLayout.setRefreshing(false);
                     }
+                    if (frg.mLayoutLoading != null)
+                        frg.mLayoutLoading.setVisibility(View.GONE);
+                    if (frg.mLayoutFail != null)
+                        frg.mLayoutFail.setVisibility(View.GONE);
+
                     frg.mRecyclerView.setAdapter(frg.mAdapter);
                     frg.mAdapter.setOnItemClickListener(new OnItemClickListener() {
                         @Override
@@ -85,6 +95,12 @@ public class FragmentListNews extends Fragment implements NewsListView{
                     break;
                 case MSG_GET_NEWS_MORE:
                     frg.mAdapter.notifyDataSetChanged();
+                    break;
+                case MSG_GET_NEWS_EMPTY:
+                    if (frg.mLayoutFail!=null)
+                        frg.mLayoutFail.setVisibility(View.VISIBLE);
+                    if (frg.mLayoutLoading != null)
+                        frg.mLayoutLoading.setVisibility(View.GONE);
                     break;
             }
         }
@@ -124,6 +140,12 @@ public class FragmentListNews extends Fragment implements NewsListView{
     }
 
     private void addAllListener() {
+        mLayoutFail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.setNewsList(mType,pageIndex,true,false);
+            }
+        });
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -180,6 +202,6 @@ public class FragmentListNews extends Fragment implements NewsListView{
 
     @Override
     public void setFail() {
-
+        mHandler.sendEmptyMessage(MSG_GET_NEWS_EMPTY);
     }
 }
