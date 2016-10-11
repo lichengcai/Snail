@@ -8,4 +8,8 @@
         <attr name="pv_text_color" format="color"/>
         <attr name="pv_background_color" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="ConvenientBanner">
+        <attr name="canLoop" format="boolean" />
+    </declare-styleable>
 </resources>

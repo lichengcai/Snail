@@ -8,8 +8,7 @@
     <TextView
         android:id="@+id/testViewPager"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="这里是一个ViewPager"
+        android:layout_height="170dp"
         android:textSize="50sp"
         android:layout_centerHorizontal="true"/>
     <GridView
@@ -17,10 +16,9 @@
         android:layout_below="@+id/testViewPager"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:columnWidth="120dp"
+        android:verticalSpacing="30dp"
         android:gravity="center"
-        android:numColumns="auto_fit"
+        android:numColumns="3"
         android:stretchMode="columnWidth">
     </GridView>
     <!--<TextView-->

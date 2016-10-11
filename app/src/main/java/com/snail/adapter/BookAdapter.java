@@ -42,7 +42,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
         this.context = context;
         this.list = list;
         initHandler();
-
     }
     private  void initHandler() {
         handler = new Handler(){
@@ -82,8 +81,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
                     //发送消息，通知UI组件显示图片
                     //关闭输入流
                     is.close();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -102,7 +99,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
         TextView tv_title;
         ImageView cover;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);
             cover = (ImageView) itemView.findViewById(R.id.cover);
