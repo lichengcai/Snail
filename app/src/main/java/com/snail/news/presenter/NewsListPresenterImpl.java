@@ -28,15 +28,19 @@ public class NewsListPresenterImpl implements NewsListPresenter {
     }
 
     @Override
-    public void setNewsList(final int type, int pageIndex, boolean refresh, boolean loadMore) {
+    public void setNewsList(final int type, int pageIndex, final boolean refresh, final boolean loadMore) {
+        if (refresh){
+            pageIndex = 0;
+        }
         String url = getUrl(type,pageIndex);
-        Log.d("setNewsList","url---" + url);
         mNewsModel.getNewsInfo(url, refresh, loadMore, new OnLoadListener() {
             @Override
             public void success(String json) {
-                Log.d("setNewsList"," success json---" + json);
                 ArrayList<News> array = News.getNewsList(type,json);
-                mNewsListView.setNews(array);
+                if (array != null) {
+                    mNewsListView.setNews(array,refresh,loadMore);
+                }
+
             }
 
             @Override

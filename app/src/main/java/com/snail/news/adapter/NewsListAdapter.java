@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.snail.R;
+import com.snail.news.FooterHolder;
 import com.snail.news.listener.OnItemClickListener;
 import com.snail.news.listener.OnItemLongClickListener;
 import com.snail.news.model.News;
@@ -22,17 +23,30 @@ import java.util.ArrayList;
  */
 
 public class NewsListAdapter extends RecyclerView.Adapter {
+    private static final int TYPE_ITEM =0;
+    private static final int TYPE_FOOTER = 1;
     private Context mContext;
     private ArrayList<News> mData;
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemClickListener mOnItemClickListener;
 
+    private boolean mShowFooter = true;
+
+    public void loadMore(ArrayList<News> arrayList) {
+        if (arrayList != null)
+            mData.addAll(arrayList);
+    }
+    public void isShowFooter(boolean mShowFooter) {
+        this.mShowFooter = mShowFooter;
+    }
+
+    public boolean isShowFooter() {
+        return mShowFooter;
+    }
+
     public NewsListAdapter(Context context,ArrayList<News> mData) {
         this.mContext = context;
         this.mData = mData;
-        for (int i=0; i<mData.size(); i++){
-            Log.d("NewsListAdapter","mData---" + mData.get(i).toString());
-        }
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -44,16 +58,32 @@ public class NewsListAdapter extends RecyclerView.Adapter {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        if (!mShowFooter) {
+            return TYPE_ITEM;
+        }
+        if (position + 1 == getItemCount()) {
+            return TYPE_FOOTER;
+        }else {
+            return TYPE_ITEM;
+        }
+    }
+
+    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new NewsHolder(LayoutInflater.from(mContext).inflate(R.layout.item_news_list,parent,false));
+        if (viewType == TYPE_FOOTER) {
+            return new FooterHolder(LayoutInflater.from(mContext).inflate(R.layout.layout_footer,parent,false));
+        }else {
+            return new NewsHolder(LayoutInflater.from(mContext).inflate(R.layout.item_news_list,parent,false));
+        }
+
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        News news = mData.get(position);
-        Log.d("onBindViewHolder","news toString---" + news.toString());
+
         if (holder instanceof NewsHolder) {
-            Log.d("onBindViewHolder","holder instanceof NewsHolder");
+            News news = mData.get(position);
             ((NewsHolder) holder).text_time.setText(news.getPtime());
             ((NewsHolder) holder).text_title.setText(news.getTitle());
             ImageLoader.getInstance().displayImage(mContext,news.getImgsrc(),((NewsHolder) holder).image);
@@ -78,7 +108,8 @@ public class NewsListAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        int count = mShowFooter ? 1 : 0;
+        return mData.size() + count;
     }
 
     private class NewsHolder extends RecyclerView.ViewHolder {

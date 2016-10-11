@@ -10,6 +10,6 @@ import java.util.ArrayList;
 
 public interface NewsListView {
 
-    void setNews(ArrayList<News> data);
+    void setNews(ArrayList<News> data,boolean refresh,boolean loadMore);
     void setFail();
 }

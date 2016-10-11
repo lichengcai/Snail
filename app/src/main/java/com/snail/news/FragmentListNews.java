@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.snail.R;
+import com.snail.common.Urls;
 import com.snail.news.adapter.NewsListAdapter;
 import com.snail.news.listener.OnItemClickListener;
 import com.snail.news.listener.OnItemLongClickListener;
@@ -42,8 +43,10 @@ public class FragmentListNews extends Fragment implements NewsListView{
 
     private NewsListPresenter mPresenter;
     private NewsListAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
     private static final int MSG_GET_NEWS_INFO = 0;
+    private static final int MSG_GET_NEWS_EMPTY =1;
+    private static final int MSG_GET_NEWS_MORE = 2;
     private int mType = ActivityNews.NEWS_EDUCATION;
     private int pageIndex = 0;
 
@@ -53,7 +56,7 @@ public class FragmentListNews extends Fragment implements NewsListView{
         private FragmentListNews frg;
 
         NewsHandler(FragmentListNews f) {
-            ref = new WeakReference<FragmentListNews>(f);
+            ref = new WeakReference<>(f);
             frg = ref.get();
         }
 
@@ -62,12 +65,13 @@ public class FragmentListNews extends Fragment implements NewsListView{
             super.handleMessage(msg);
             switch (msg.what) {
                 case MSG_GET_NEWS_INFO:
-                    Log.d("handleMessage","MSG_GET_NEWS_INFO");
+                    if (frg.mSwipeRefreshLayout != null && frg.mSwipeRefreshLayout.isRefreshing()) {
+                        frg.mSwipeRefreshLayout.setRefreshing(false);
+                    }
                     frg.mRecyclerView.setAdapter(frg.mAdapter);
                     frg.mAdapter.setOnItemClickListener(new OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            Log.d("handleMessage","onItemClick---" + position);
                             Toast.makeText(frg.getActivity(),"onItemClick---" + position,Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -75,10 +79,12 @@ public class FragmentListNews extends Fragment implements NewsListView{
                     frg.mAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
                         @Override
                         public void onItemLongClick(View view, int position) {
-                            Log.d("handleMessage","onItemLongClick---" + position);
                             Toast.makeText(frg.getActivity(),"onItemLongClick---" + position,Toast.LENGTH_SHORT).show();
                         }
                     });
+                    break;
+                case MSG_GET_NEWS_MORE:
+                    frg.mAdapter.notifyDataSetChanged();
                     break;
             }
         }
@@ -110,16 +116,66 @@ public class FragmentListNews extends Fragment implements NewsListView{
 
     private void init() {
         mPresenter = new NewsListPresenterImpl(this);
-        mPresenter.setNewsList(mType,pageIndex,false,false);
+        mPresenter.setNewsList(mType,pageIndex,true,false);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        addAllListener();
     }
 
+    private void addAllListener() {
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.setNewsList(mType,pageIndex,true,false);
+            }
+        });
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            int lastVisibleItem;
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount() && mAdapter.isShowFooter()) {
+                    mPresenter.setNewsList(mType,pageIndex + Urls.PAZE_SIZE,false,true);
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+            }
+        });
+    }
 
     @Override
-    public void setNews(ArrayList<News> data) {
-        mAdapter = new NewsListAdapter(getActivity(),data);
-        mHandler.sendEmptyMessage(MSG_GET_NEWS_INFO);
+    public void setNews(ArrayList<News> data, boolean refresh, boolean loadMore) {
+        if (refresh) {
+            mAdapter = new NewsListAdapter(getActivity(),data);
+            if (data.size() < Urls.PAZE_SIZE) {
+                mAdapter.isShowFooter(false);
+            }else {
+                mAdapter.isShowFooter(true);
+            }
+
+            if (data.size() == 0) {
+                mHandler.sendEmptyMessage(MSG_GET_NEWS_EMPTY);
+            }else {
+                mHandler.sendEmptyMessage(MSG_GET_NEWS_INFO);
+            }
+        }
+
+        if (loadMore) {
+            if (data.size() < Urls.PAZE_SIZE) {
+                mAdapter.isShowFooter(false);
+            }else {
+                mAdapter.isShowFooter(true);
+            }
+
+            mAdapter.loadMore(data);
+            mHandler.sendEmptyMessage(MSG_GET_NEWS_MORE);
+        }
+
     }
 
     @Override
