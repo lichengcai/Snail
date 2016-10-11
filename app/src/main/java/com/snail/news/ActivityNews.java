@@ -55,9 +55,9 @@ public class ActivityNews extends ActivityBase {
     }
 
     private void initView() {
-        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.top));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.education));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.science));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.top));
 
     }
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:pv="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_activity_splash">
+    android:background="@color/colorPrimaryDark">
 
     <com.snail.widget.particleview.ParticleView
         android:id="@+id/pv_1"

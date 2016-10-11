@@ -5,6 +5,7 @@ import android.util.Log;
 import com.avos.avoscloud.okhttp.OkHttpClient;
 import com.avos.avoscloud.okhttp.Request;
 import com.avos.avoscloud.okhttp.Response;
+import com.snail.utils.HttpUtils;
 
 import java.io.IOException;
 
@@ -15,23 +16,18 @@ import java.io.IOException;
 public class NewsModelImpl implements NewsModel {
     @Override
     public void getNewsInfo() {
-        final OkHttpClient client = new OkHttpClient();
-        final Request request = new Request.Builder().get().tag(this).url("http://c.m.163.com/nc/article/list/T1348654060988/0-20.html").build();
 
-        new Thread(new Runnable() {
+        HttpUtils.test("http://c.m.163.com/nc/article/list/T1348654060988/0-20.html", new HttpUtils.LoadCallback() {
             @Override
-            public void run() {
-                Response response = null;
-                try {
-                    response = client.newCall(request).execute();
-                    if (response.isSuccessful()) {
-                        Log.d("tag","okhttp response---" + response.body().string());
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            public void success(String json) {
+                Log.d("test","httpUtils response---" + json);
+            }
+
+            @Override
+            public void fail(IOException e) {
 
             }
-        }).start();
+        });
+
     }
 }

@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:bnbActiveColor="@color/white"
-            app:bnbBackgroundColor="@color/colorPrimary"
+            app:bnbBackgroundColor="@color/colorPrimaryDark"
             app:bnbBackgroundStyle="background_style_static"/>
     </LinearLayout>
 
