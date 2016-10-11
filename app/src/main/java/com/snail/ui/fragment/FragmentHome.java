@@ -19,6 +19,7 @@ import com.snail.news.ActivityNews;
 import com.snail.transforms.CubeOutTransformer;
 import com.snail.transforms.DefaultTransformer;
 import com.snail.transforms.TransformerItem;
+import com.snail.ui.activity.ActivityTest;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
 import com.snail.widget.LocalImageHolderView;
@@ -108,6 +109,9 @@ public class FragmentHome extends Fragment {
                     {
                         Intent intent = new Intent();
                         switch (arg2) {
+                            case 0:
+                                startActivity(new Intent(getContext(), ActivityTest.class));
+                                break;
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);
                                 startActivity(intent);
