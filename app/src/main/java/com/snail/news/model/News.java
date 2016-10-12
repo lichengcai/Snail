@@ -1,5 +1,7 @@
 package com.snail.news.model;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.snail.common.Urls;
@@ -19,6 +21,25 @@ public class News implements Serializable{
     private String title;
     private String imgsrc;
     private String ptime;
+    private String url_3w;
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "title='" + title + '\'' +
+                ", imgsrc='" + imgsrc + '\'' +
+                ", ptime='" + ptime + '\'' +
+                ", url_3w='" + url_3w + '\'' +
+                '}';
+    }
+
+    public String getUrl_3w() {
+        return url_3w;
+    }
+
+    public void setUrl_3w(String url_3w) {
+        this.url_3w = url_3w;
+    }
 
     public static ArrayList<News> getNewsList(int type,String json) {
         String s = null;
@@ -37,7 +58,13 @@ public class News implements Serializable{
             JSONObject jsonObject = new JSONObject(json);
             Gson gson = new Gson();
             ArrayList<News> arrayList = gson.fromJson(jsonObject.getString(s),new TypeToken<ArrayList<News>>(){}.getType());
-            return arrayList;
+            ArrayList<News> array = new ArrayList<>();
+            for (int i=0; i<arrayList.size(); i++) {
+                if (!TextUtils.isEmpty(arrayList.get(i).getUrl_3w())){
+                    array.add(arrayList.get(i));
+                }
+            }
+            return array;
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -67,12 +94,5 @@ public class News implements Serializable{
         this.ptime = ptime;
     }
 
-    @Override
-    public String toString() {
-        return "News{" +
-                "title='" + title + '\'' +
-                ", imgsrc='" + imgsrc + '\'' +
-                ", ptime='" + ptime + '\'' +
-                '}';
-    }
+
 }

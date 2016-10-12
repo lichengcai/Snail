@@ -3,10 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#000000</color>//303F9F
 
-    <color name="colorAccent">#FF4</color>
+    <color name="colorAccent">#808080</color>
     <color name="white">#ffffff</color>
-    <color name="backcolor">#f4f4f4</color> <!--屏幕底色-->
-    <color name="dividercolor">#d6d6d6</color> <!--分割线-->
+    <color name="black">#000000</color>
+    <color name="backColor">#f4f4f4</color> <!--屏幕底色-->
+    <color name="divideColor">#d6d6d6</color> <!--分割线-->
     <color name="gray">#808080</color> <!--灰色 -->
 
 

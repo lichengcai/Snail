@@ -21,4 +21,7 @@
         android:numColumns="3"
         android:stretchMode="columnWidth">
     </GridView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 </LinearLayout>

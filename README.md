@@ -1,14 +1,9 @@
 ## snail
-## 集成第三方
-- leancloud 存储
+- [leancloud 存储] (https://leancloud.cn/)
 - [StatusBarUtil 状态栏工具类](http://jaeger.itscoder.com/android/2016/03/27/statusbar-util.html)
-
-
 
 ## refrences
 - [ANDROID调用系统相机拍照](http://stormzhang.com/android/2013/10/19/android-call-camera/)
-
-
 
 ## network
 - [learning](http://m.sohu.com/ca/?channel=learning&index=3)
@@ -16,3 +11,6 @@
 
 ## ConvenientBanner 首页轮播
 - [github.com](https://github.com/lichengcai/Android-ConvenientBanner)
+
+## 加载动画地址
+- [github.com](https://github.com/zzz40500/android-shapeLoadingView)

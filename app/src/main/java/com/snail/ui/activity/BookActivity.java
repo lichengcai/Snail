@@ -80,7 +80,8 @@ public class BookActivity extends ActivityBase {
                         for (Map obj: arr
                              ) {
                             Map cover = (Map) obj.get("cover");
-                            listBooks.add( new Book(obj.get("title").toString(), cover.get("url").toString()));
+
+                            listBooks.add( new Book(obj.get("title").toString(), cover.get("url").toString(),obj.get("info").toString()));
                         }
 
                         Log.i("map to string", data.toString());
