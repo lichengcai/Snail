@@ -33,6 +33,7 @@ public class NewsListPresenterImpl implements NewsListPresenter {
             pageIndex = 0;
         }
         String url = getUrl(type,pageIndex);
+        Log.d("setNewsList","String url---" + url);
         mNewsModel.getNewsInfo(url, refresh, loadMore, new OnLoadListener() {
             @Override
             public void success(String json) {

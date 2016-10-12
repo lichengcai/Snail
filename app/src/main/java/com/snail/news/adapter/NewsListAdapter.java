@@ -32,6 +32,9 @@ public class NewsListAdapter extends RecyclerView.Adapter {
 
     private boolean mShowFooter = true;
 
+    public String getUrl_3w(int position) {
+        return mData.get(position).getUrl_3w();
+    }
     public void loadMore(ArrayList<News> arrayList) {
         if (arrayList != null)
             mData.addAll(arrayList);

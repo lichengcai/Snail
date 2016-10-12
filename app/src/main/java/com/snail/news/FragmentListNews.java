@@ -1,5 +1,6 @@
 package com.snail.news;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.snail.news.model.NewsModelImpl;
 import com.snail.news.presenter.NewsListPresenter;
 import com.snail.news.presenter.NewsListPresenterImpl;
 import com.snail.news.view.NewsListView;
+import com.snail.ui.activity.ActivityTest;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -82,7 +85,12 @@ public class FragmentListNews extends Fragment implements NewsListView{
                     frg.mAdapter.setOnItemClickListener(new OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            Toast.makeText(frg.getActivity(),"onItemClick---" + position,Toast.LENGTH_SHORT).show();
+                            String url_3w = frg.mAdapter.getUrl_3w(position);
+                            if (!TextUtils.isEmpty(url_3w)) {
+                                Intent intent = new Intent(frg.getActivity(), ActivityTest.class);
+                                intent.putExtra("url_3w",url_3w);
+                                frg.startActivity(intent);
+                            }
                         }
                     });
 
@@ -159,6 +167,7 @@ public class FragmentListNews extends Fragment implements NewsListView{
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount() && mAdapter.isShowFooter()) {
                     mPresenter.setNewsList(mType,pageIndex + Urls.PAZE_SIZE,false,true);
+                    Log.d("addAllListener","onScrollStateChanged");
                 }
             }
 
@@ -166,6 +175,7 @@ public class FragmentListNews extends Fragment implements NewsListView{
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+                Log.d("addAllListener","lastVisibleItem---" + lastVisibleItem + "   getItemCount---" + mAdapter.getItemCount());
             }
         });
     }
@@ -174,10 +184,10 @@ public class FragmentListNews extends Fragment implements NewsListView{
     public void setNews(ArrayList<News> data, boolean refresh, boolean loadMore) {
         if (refresh) {
             mAdapter = new NewsListAdapter(getActivity(),data);
-            if (data.size() < Urls.PAZE_SIZE) {
-                mAdapter.isShowFooter(false);
-            }else {
+            if (data.size() > 0) {
                 mAdapter.isShowFooter(true);
+            }else {
+                mAdapter.isShowFooter(false);
             }
 
             if (data.size() == 0) {
@@ -188,12 +198,11 @@ public class FragmentListNews extends Fragment implements NewsListView{
         }
 
         if (loadMore) {
-            if (data.size() < Urls.PAZE_SIZE) {
-                mAdapter.isShowFooter(false);
-            }else {
+            if (data.size() > 0) {
                 mAdapter.isShowFooter(true);
+            }else {
+                mAdapter.isShowFooter(false);
             }
-
             mAdapter.loadMore(data);
             mHandler.sendEmptyMessage(MSG_GET_NEWS_MORE);
         }
