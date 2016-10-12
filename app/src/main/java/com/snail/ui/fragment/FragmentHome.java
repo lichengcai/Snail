@@ -19,6 +19,7 @@ import com.snail.news.ActivityNews;
 import com.snail.transforms.CubeOutTransformer;
 import com.snail.transforms.DefaultTransformer;
 import com.snail.transforms.TransformerItem;
+import com.snail.ui.activity.ActivityTest;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
 import com.snail.widget.LocalImageHolderView;
@@ -63,7 +64,7 @@ public class FragmentHome extends Fragment {
             }
         },localImages)
         .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
-//        mBanner.startTurning(3000);//设置轮播开始自动循环
+        mBanner.startTurning(3000);//设置轮播开始自动循环
         mBanner.setScrollDuration(2000);//设置滑动速度
         try {
             mBanner.getViewPager().setPageTransformer(true,new TransformerItem(CubeOutTransformer.class).clazz.newInstance());//设置轮播动画
@@ -108,6 +109,9 @@ public class FragmentHome extends Fragment {
                     {
                         Intent intent = new Intent();
                         switch (arg2) {
+                            case 0:
+                                startActivity(new Intent(getContext(), ActivityTest.class));
+                                break;
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);
                                 startActivity(intent);

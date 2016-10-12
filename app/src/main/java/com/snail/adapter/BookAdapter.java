@@ -20,6 +20,7 @@ import com.snail.R;
 import com.snail.bean.Book;
 import com.snail.bean.Notes;
 import com.snail.ui.activity.BookActivity;
+import com.snail.utils.ImageLoader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +34,7 @@ import okhttp3.Response;
 /**
  * Created by chenzhiwei on 16/10/9.
  */
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> {
+public class BookAdapter extends RecyclerView.Adapter {
     private Context context;
     private ArrayList<Book> list;
     private MyViewHolder myViewHolder;
@@ -54,41 +55,50 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         myViewHolder = new MyViewHolder(LayoutInflater.from(context).inflate(R
                 .layout.item_books, parent, false));
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        myViewHolder.tv_title.setText(list.get(position).getTitle());
-        final String url = list.get(position).getCover();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //创建一个url对象
-                URL urlobj= null;
-                try {
-                    urlobj = new URL(url);
-                    //打开URL对应的资源输入流
-                    InputStream is= urlobj.openStream();
-                    //从InputStream流中解析出图片
-                    Bitmap bitmap = BitmapFactory.decodeStream(is);
-                    Message msg = new Message();
-                    msg.obj = bitmap;
-                    handler.sendMessage(msg);
-                    //发送消息，通知UI组件显示图片
-                    //关闭输入流
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }).start();
-//        myViewHolder.cover.setText(list.get(position).getCover());
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof MyViewHolder) {
+            Book book = list.get(position);
+            ((MyViewHolder) holder).tv_title.setText(book.getTitle());
+            ImageLoader.getInstance().displayImage(context,book.getCover(),((MyViewHolder) holder).cover);
+        }
     }
+
+//    @Override
+//    public void onBindViewHolder(MyViewHolder holder, int position) {
+//        myViewHolder.tv_title.setText(list.get(position).getTitle());
+//        final String url = list.get(position).getCover();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                //创建一个url对象
+//                URL urlobj= null;
+//                try {
+//                    urlobj = new URL(url);
+//                    //打开URL对应的资源输入流
+//                    InputStream is= urlobj.openStream();
+//                    //从InputStream流中解析出图片
+//                    Bitmap bitmap = BitmapFactory.decodeStream(is);
+//                    Message msg = new Message();
+//                    msg.obj = bitmap;
+//                    handler.sendMessage(msg);
+//                    //发送消息，通知UI组件显示图片
+//                    //关闭输入流
+//                    is.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        }).start();
+//        myViewHolder.cover.setText(list.get(position).getCover());
+//    }
 
     @Override
     public int getItemCount() {
