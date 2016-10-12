@@ -1,12 +1,18 @@
 package com.snail.ui.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.RelativeLayout;
 
 import com.snail.R;
+
+import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +24,11 @@ import butterknife.ButterKnife;
 public class ActivityTest extends ActivityBase {
     @BindView(R.id.webView)
     WebView mWebView;
+    @BindView(R.id.layout_loading)
+    RelativeLayout mLayout_loading;
+
+    private TestHandler mHandler = new TestHandler(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,24 +42,33 @@ public class ActivityTest extends ActivityBase {
             mWebView.setWebViewClient(new HelloWebViewClient());
         }
 
+        new Thread(new ThreadShow()).start();
     }
 
-//    @Override
-//    //设置回退
-//    //覆盖Activity类的onKeyDown(int keyCoder,KeyEvent event)方法
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {
-//            mWebView.goBack(); //goBack()表示返回WebView的上一页面
-//            return true;
-//        }
-//        finish();//结束退出程序
-//        return false;
-//    }
+    private static class TestHandler extends Handler {
+        private WeakReference<ActivityTest> ref;
+        private ActivityTest act;
+
+        public TestHandler(ActivityTest test) {
+            ref = new WeakReference<>(test);
+            act = ref.get();
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    if (act.mLayout_loading != null)
+                        act.mLayout_loading.setVisibility(View.GONE);
+                    break;
+            }
+        }
+    }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        finish();
         if (mWebView.canGoBack()) {
             mWebView.goBack();
         }else {
@@ -64,4 +84,23 @@ public class ActivityTest extends ActivityBase {
             return true;
         }
     }
+    // 线程类
+    class ThreadShow implements Runnable {
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            while (true) {
+                try {
+                    Thread.sleep(2000);
+                    Message msg = new Message();
+                    msg.what = 0;
+                    mHandler.sendMessage(msg);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
