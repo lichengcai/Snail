@@ -7,9 +7,21 @@ package com.snail.bean;
 public class Book {
     private String title;
     private String cover;
-    public Book(String title, String cover) {
+    private String info;
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+
+    public Book(String title, String cover,String info) {
         this.title = title;
         this.cover = cover;
+        this.info = info;
     }
 
     public String getTitle() {

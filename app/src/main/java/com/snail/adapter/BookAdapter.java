@@ -38,20 +38,9 @@ public class BookAdapter extends RecyclerView.Adapter {
     private Context context;
     private ArrayList<Book> list;
     private MyViewHolder myViewHolder;
-    private Handler handler;
     public BookAdapter(Context context, ArrayList<Book> list) {
         this.context = context;
         this.list = list;
-        initHandler();
-    }
-    private  void initHandler() {
-        handler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                myViewHolder.cover.setImageBitmap((Bitmap) msg.obj);
-            }
-        };
     }
 
     @Override
@@ -65,40 +54,11 @@ public class BookAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder) {
             Book book = list.get(position);
-            ((MyViewHolder) holder).tv_title.setText(book.getTitle());
+            ((MyViewHolder) holder).tv_book_title.setText(book.getTitle());
+            ((MyViewHolder) holder).tv_book_info.setText(book.getInfo());
             ImageLoader.getInstance().displayImage(context,book.getCover(),((MyViewHolder) holder).cover);
         }
     }
-
-//    @Override
-//    public void onBindViewHolder(MyViewHolder holder, int position) {
-//        myViewHolder.tv_title.setText(list.get(position).getTitle());
-//        final String url = list.get(position).getCover();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                //创建一个url对象
-//                URL urlobj= null;
-//                try {
-//                    urlobj = new URL(url);
-//                    //打开URL对应的资源输入流
-//                    InputStream is= urlobj.openStream();
-//                    //从InputStream流中解析出图片
-//                    Bitmap bitmap = BitmapFactory.decodeStream(is);
-//                    Message msg = new Message();
-//                    msg.obj = bitmap;
-//                    handler.sendMessage(msg);
-//                    //发送消息，通知UI组件显示图片
-//                    //关闭输入流
-//                    is.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        }).start();
-//        myViewHolder.cover.setText(list.get(position).getCover());
-//    }
 
     @Override
     public int getItemCount() {
@@ -106,13 +66,15 @@ public class BookAdapter extends RecyclerView.Adapter {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_title;
+        TextView tv_book_title;
+        TextView tv_book_info;
         ImageView cover;
 
         MyViewHolder(View itemView) {
             super(itemView);
-            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
-            cover = (ImageView) itemView.findViewById(R.id.cover);
+            tv_book_title = (TextView) itemView.findViewById(R.id.text_book_title);
+            tv_book_info = (TextView) itemView.findViewById(R.id.text_book_info);
+            cover = (ImageView) itemView.findViewById(R.id.img_book_cover);
         }
     }
 }
