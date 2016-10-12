@@ -37,7 +37,7 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
     <LinearLayout
-        android:background="@color/divideColor"
+        android:background="@color/backColor"
         android:layout_width="match_parent"
         android:layout_height="5dp"/>
 </LinearLayout>

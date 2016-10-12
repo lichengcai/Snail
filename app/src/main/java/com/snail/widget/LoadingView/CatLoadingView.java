@@ -14,11 +14,6 @@ import android.view.animation.RotateAnimation;
 import com.snail.R;
 
 
-//import net.koo.R;
-
-/**
- * Created by Administrator on 2016/3/30.
- */
 public class CatLoadingView extends DialogFragment {
 
     public CatLoadingView() {

@@ -1,8 +1,11 @@
 package com.snail.ui.activity;
 
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -11,6 +14,8 @@ import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 
 import com.snail.R;
+import com.snail.widget.flipshare.FlipShareView;
+import com.snail.widget.flipshare.ShareItem;
 
 import java.lang.ref.WeakReference;
 
@@ -26,6 +31,8 @@ public class ActivityTest extends ActivityBase {
     WebView mWebView;
     @BindView(R.id.layout_loading)
     RelativeLayout mLayout_loading;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
 
     private TestHandler mHandler = new TestHandler(this);
 
@@ -43,6 +50,22 @@ public class ActivityTest extends ActivityBase {
         }
 
         new Thread(new ThreadShow()).start();
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FlipShareView share = new FlipShareView.Builder(ActivityTest.this, mFab)
+                        .addItem(new ShareItem("Facebook", Color.WHITE, 0xff43549C, BitmapFactory.decodeResource(getResources(), R.drawable.ic_share)))
+                        .addItem(new ShareItem("Twitter", Color.WHITE, 0xff4999F0, BitmapFactory.decodeResource(getResources(), R.drawable.ic_share)))
+                        .addItem(new ShareItem("Google+", Color.WHITE, 0xffD9392D, BitmapFactory.decodeResource(getResources(), R.drawable.ic_share)))
+                        .addItem(new ShareItem("http://www.wangyuwei.me", Color.WHITE, 0xff57708A))
+                        .setBackgroundColor(0x60000000)
+                        .setItemDuration(500)
+                        .setSeparateLineColor(0x30000000)
+                        .setAnimType(FlipShareView.TYPE_SLIDE)
+                        .create();
+            }
+        });
+
     }
 
     private static class TestHandler extends Handler {
@@ -61,6 +84,8 @@ public class ActivityTest extends ActivityBase {
                 case 0:
                     if (act.mLayout_loading != null)
                         act.mLayout_loading.setVisibility(View.GONE);
+                    if (act.mFab != null)
+                        act.mFab.setVisibility(View.VISIBLE);
                     break;
             }
         }
@@ -92,7 +117,7 @@ public class ActivityTest extends ActivityBase {
             // TODO Auto-generated method stub
             while (true) {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(3500);
                     Message msg = new Message();
                     msg.what = 0;
                     mHandler.sendMessage(msg);

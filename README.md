@@ -16,3 +16,6 @@
 
 ## ConvenientBanner 首页轮播
 - [github.com](https://github.com/lichengcai/Android-ConvenientBanner)
+
+## 加载动画地址
+- [github.com](https://github.com/zzz40500/android-shapeLoadingView)
