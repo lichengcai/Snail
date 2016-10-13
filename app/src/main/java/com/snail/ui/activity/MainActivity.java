@@ -22,6 +22,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.ProgressCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.snail.R;
@@ -70,6 +71,24 @@ public class MainActivity extends ActivityBase {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         init();
+        
+        testNews();
+    }
+
+    private void testNews() {
+        AVObject a = new AVObject("News");
+        a.add("title","test_title");
+        a.add("ptime","test_ptime");
+        a.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    Log.d("testNews","news save successful");
+                }else {
+                    Log.d("testNews","news save failed");
+                }
+            }
+        });
     }
 
     /**
@@ -79,7 +98,7 @@ public class MainActivity extends ActivityBase {
         setAllListener();
 
         mBottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.btn_tab_home_normal, "Home"))
-                .addItem(new BottomNavigationItem(R.drawable.btn_tab_wrong_normal, "Write"))
+                .addItem(new BottomNavigationItem(R.drawable.btn_tab_wrong_normal, "Wrong"))
                 .addItem(new BottomNavigationItem(R.drawable.btn_tab_more_normal, "More")).initialise();
         mFragmentList.add(new FragmentHome());
         mFragmentList.add(new FragmentWrite());
@@ -253,6 +272,7 @@ public class MainActivity extends ActivityBase {
             avfile.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(AVException e) {
+                    if (e == null)
                     Log.d("upload-net-url", avfile.getUrl());//返回一个唯一的 Url 地址
                 }
             },new ProgressCallback() {

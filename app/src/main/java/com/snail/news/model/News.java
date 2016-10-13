@@ -23,6 +23,10 @@ public class News implements Serializable{
     private String ptime;
     private String url_3w;
 
+    public News(String title,String time) {
+        this.title = title;
+        this.ptime = time;
+    }
     @Override
     public String toString() {
         return "News{" +

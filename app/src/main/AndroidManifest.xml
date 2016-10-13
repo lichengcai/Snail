@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+        android:hardwareAccelerated="false"
         android:name=".SnailApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
@@ -52,10 +53,15 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTop"
             />
+        <activity android:name=".ui.activity.ActivitySimpleDetail"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".ui.activity.ActivityTest"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"
             />
+
     </application>
 
 </manifest>
