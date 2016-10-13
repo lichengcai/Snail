@@ -51,6 +51,8 @@ public class MainActivity extends ActivityBase {
     BottomNavigationBar mBottomNavigationBar;
     @BindView(R.id.mFloatingActionButton)
     FloatingActionButton mFloatingActionButton;
+
+    private File file;
     /**
      * Fragment集合
      */
@@ -178,9 +180,10 @@ public class MainActivity extends ActivityBase {
 //                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
 //                MainActivity.this.startActivityForResult(intent,REQUEST_CODE_CAMERA);
 
+                Uri imageUri = Uri.fromFile(getTempImage());
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // 指定存储照片的路径
-                Uri imageUri = Uri.fromFile(getTempImage());
+
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                 startActivityForResult(intent, REQUEST_CODE_CAMERA);
             }
@@ -224,17 +227,11 @@ public class MainActivity extends ActivityBase {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0) {
-//            if (resultCode == RESULT_OK) {
-//                Bitmap b = data.getParcelableExtra("data");
-//            }
             if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK) {
-//                Bundle bundle = data.getExtras();
-                // 获取相机返回的数据，并转换为Bitmap图片格式 ，这是缩略图
-//                Bitmap bitmap = (Bitmap) bundle.get("data");
                 File file = getTempImage();
                 String filePath = file.getPath();
+                Log.d("MainActivity","file ---" + file.length());
                 uploadCamerImage(filePath, file);
-                Log.d("paizhao",filePath);
             }
         }
     }
@@ -296,12 +293,12 @@ public class MainActivity extends ActivityBase {
         if (android.os.Environment.getExternalStorageState().equals(
                 android.os.Environment.MEDIA_MOUNTED)) {
             File tempFile = new File(Environment.getExternalStorageDirectory(), "temp.jpg");
+
             try {
                 tempFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             return tempFile;
         }
         return null;

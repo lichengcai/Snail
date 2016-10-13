@@ -27,6 +27,7 @@ import com.snail.news.model.NewsModelImpl;
 import com.snail.news.presenter.NewsListPresenter;
 import com.snail.news.presenter.NewsListPresenterImpl;
 import com.snail.news.view.NewsListView;
+import com.snail.ui.activity.ActivitySimpleDetail;
 import com.snail.ui.activity.ActivityTest;
 
 import java.lang.ref.WeakReference;
@@ -87,7 +88,7 @@ public class FragmentListNews extends Fragment implements NewsListView{
                         public void onItemClick(View view, int position) {
                             String url_3w = frg.mAdapter.getUrl_3w(position);
                             if (!TextUtils.isEmpty(url_3w)) {
-                                Intent intent = new Intent(frg.getActivity(), ActivityTest.class);
+                                Intent intent = new Intent(frg.getActivity(), ActivitySimpleDetail.class);
                                 intent.putExtra("url_3w",url_3w);
                                 frg.startActivity(intent);
                             }

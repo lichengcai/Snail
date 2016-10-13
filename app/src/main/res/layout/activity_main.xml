@@ -40,6 +40,7 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:visibility="gone"
         android:id="@+id/mFloatingActionButton"
         android:layout_gravity="end|bottom"
         android:layout_marginRight="16dp"

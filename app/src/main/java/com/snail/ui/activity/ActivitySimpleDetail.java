@@ -13,6 +13,7 @@ import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 
 import com.snail.R;
+import com.snail.common.Urls;
 import com.snail.widget.flipshare.FlipShareView;
 import com.snail.widget.flipshare.ShareItem;
 
@@ -104,7 +105,7 @@ public class ActivitySimpleDetail extends ActivityBase {
     private class HelloWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl("https://m.douban.com/book/subject/26840552/");
+            view.loadUrl(url);
             return true;
         }
     }

@@ -20,16 +20,26 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVFile;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.GetDataCallback;
+import com.avos.avoscloud.ProgressCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.snail.R;
+import com.snail.utils.ImageLoader;
 import com.snail.widget.flipshare.FlipShareView;
 import com.snail.widget.flipshare.ShareItem;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import top.zibin.luban.Luban;
+import top.zibin.luban.OnCompressListener;
 
 /**
  * Created by chengcai on 2016/10/11.
@@ -41,8 +51,22 @@ public class ActivityTest extends ActivityBase {
     @BindView(R.id.image_real)
     ImageView mImage_real;
 
-    private File imageFile;
+    private AVFile avfile ;
+    private String url = null;
 
+
+    private File file;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case  10:
+//                    mImage_real.setImageBitmap(BitmapFactory.decodeFile(imageFileFinal.getAbsolutePath()));
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,19 +76,22 @@ public class ActivityTest extends ActivityBase {
     }
 
     public void camera(View view) {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(intent,0);
-        }
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivityForResult(intent,0);
+//        }
+
+//        download(avfile);
+        AVFile avFile = new AVFile("test.png",url,null);
+        download(avFile);
     }
 
-    public void real(View view) {
-        if (initImageFile()) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-            startActivityForResult(intent,1);
-        }
 
+    public void real(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        initImg();
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+        startActivityForResult(intent,1);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -78,56 +105,105 @@ public class ActivityTest extends ActivityBase {
                 mImage.setImageBitmap(bitmap);
             }
             if (requestCode == 1) {
-                if (imageFile.exists()) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
-                    Log.d("camera","bitmap---" + bitmap.getByteCount() + "---" + bitmap.toString());
-                    mImage_real.setImageBitmap(bitmap);
-                }
+                Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+//                mImage_real.setImageBitmap(bitmap);
+                uploadCamerImage(file.getPath());
             }
         }else {
             Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();
 
         }
     }
+    public Bitmap download(AVFile file) {
+        file.getDataInBackground(new GetDataCallback() {
+            @Override
+            public void done(byte[] bytes, AVException e) {
+                Log.d("download","bytes length---" + bytes.length);
+                Bitmap b = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                Toast.makeText(ActivityTest.this,"test",Toast.LENGTH_SHORT).show();
+                mImage_real.setImageBitmap(b);
+            }
+        });
+        return null;
+    }
     /**
-     * 判断是否有SD卡
-     *
-     * @return 有SD卡返回true，否则false
+     * invoke leanclound interface to upload local file by camera
+     * @param filePath
      */
-    private boolean hasSDCard() {
-        // 获取外部存储的状态
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            // 有SD卡
-            return true;
+    public void uploadCamerImage(String filePath) {
+        try {
+            avfile = AVFile.withAbsoluteLocalPath("test.png", filePath);
+            long l = System.currentTimeMillis();
+            avfile.addMetaData("time",String.valueOf(l));
+            avfile.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(AVException e) {
+                    if (e == null)
+                        url = avfile.getUrl();
+                        Log.d("upload-net-url", avfile.getUrl());//返回一个唯一的 Url 地址
+                }
+            },new ProgressCallback() {
+                @Override
+                public void done(Integer integer) {
+                    Log.d("upload",integer.toString());
+                    // 上传进度数据，integer 介于 0 和 100。
+                }
+            });
+        } catch (FileNotFoundException e) {
+            Log.d("upload-exception", e.toString());
+            e.printStackTrace();
         }
-        return false;
+    }
+
+    public  void  initImg() {
+        if (android.os.Environment.getExternalStorageState().equals(
+                android.os.Environment.MEDIA_MOUNTED)) {
+            String s = String.valueOf(System.currentTimeMillis());
+            file = new File(Environment.getExternalStorageDirectory(),  "snail.jpg");
+
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d("ActivityTest","imageFile---" + file.length());
+        }
     }
 
     /**
-     * 初始化存储图片的文件
-     *
-     * @return 初始化成功返回true，否则false
+     * get tamp iamge ,
+     * @return File
      */
-    private boolean initImageFile() {
-        // 有SD卡时才初始化文件
-        if (hasSDCard()) {
-            // 构造存储图片的文件的路径，文件名为当前时间
-            String filePath = Environment.getExternalStorageDirectory()
-                    .getAbsolutePath()
-                    + "/"
-                    + System.currentTimeMillis()
-                    + ".png";
-            imageFile = new File(filePath);
-            if (!imageFile.exists()) {// 如果文件不存在，就创建文件
-                try {
-                    imageFile.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            return true;
-        }
-        return false;
-    }
+//    public static File getTempImage() {
+//        if (android.os.Environment.getExternalStorageState().equals(
+//                android.os.Environment.MEDIA_MOUNTED)) {
+////            File tempFile = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
+//            File tempFile = new File(Environment.getExternalStorageDirectory(), "temp.jpg");
+//
+//            try {
+//                tempFile.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            Log.d("ActivityTest","imageFile---" + tempFile.length());
+//            return tempFile;
+//        }
+//        return null;
+//    }
+
+//    public static File getTempImage() {
+//        if (android.os.Environment.getExternalStorageState().equals(
+//                android.os.Environment.MEDIA_MOUNTED)) {
+//            File tempFile = new File(Environment.getExternalStorageDirectory(), "temp.jpg");
+//
+//            try {
+//                tempFile.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            Log.d("ActivityTest","getTempImage imageFile---" + tempFile.length());
+//            return tempFile;
+//        }
+//        return null;
+//    }
 }
