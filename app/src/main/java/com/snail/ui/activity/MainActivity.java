@@ -22,6 +22,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.ProgressCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.snail.R;
@@ -50,6 +51,8 @@ public class MainActivity extends ActivityBase {
     BottomNavigationBar mBottomNavigationBar;
     @BindView(R.id.mFloatingActionButton)
     FloatingActionButton mFloatingActionButton;
+
+    private File file;
     /**
      * Fragment集合
      */
@@ -70,6 +73,24 @@ public class MainActivity extends ActivityBase {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         init();
+        
+        testNews();
+    }
+
+    private void testNews() {
+        AVObject a = new AVObject("News");
+        a.add("title","test_title");
+        a.add("ptime","test_ptime");
+        a.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    Log.d("testNews","news save successful");
+                }else {
+                    Log.d("testNews","news save failed");
+                }
+            }
+        });
     }
 
     /**
@@ -79,7 +100,7 @@ public class MainActivity extends ActivityBase {
         setAllListener();
 
         mBottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.btn_tab_home_normal, "Home"))
-                .addItem(new BottomNavigationItem(R.drawable.btn_tab_wrong_normal, "Write"))
+                .addItem(new BottomNavigationItem(R.drawable.btn_tab_wrong_normal, "Wrong"))
                 .addItem(new BottomNavigationItem(R.drawable.btn_tab_more_normal, "More")).initialise();
         mFragmentList.add(new FragmentHome());
         mFragmentList.add(new FragmentWrite());
@@ -159,9 +180,10 @@ public class MainActivity extends ActivityBase {
 //                intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
 //                MainActivity.this.startActivityForResult(intent,REQUEST_CODE_CAMERA);
 
+                Uri imageUri = Uri.fromFile(getTempImage());
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // 指定存储照片的路径
-                Uri imageUri = Uri.fromFile(getTempImage());
+
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                 startActivityForResult(intent, REQUEST_CODE_CAMERA);
             }
@@ -205,17 +227,11 @@ public class MainActivity extends ActivityBase {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0) {
-//            if (resultCode == RESULT_OK) {
-//                Bitmap b = data.getParcelableExtra("data");
-//            }
             if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK) {
-//                Bundle bundle = data.getExtras();
-                // 获取相机返回的数据，并转换为Bitmap图片格式 ，这是缩略图
-//                Bitmap bitmap = (Bitmap) bundle.get("data");
                 File file = getTempImage();
                 String filePath = file.getPath();
+                Log.d("MainActivity","file ---" + file.length());
                 uploadCamerImage(filePath, file);
-                Log.d("paizhao",filePath);
             }
         }
     }
@@ -253,6 +269,7 @@ public class MainActivity extends ActivityBase {
             avfile.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(AVException e) {
+                    if (e == null)
                     Log.d("upload-net-url", avfile.getUrl());//返回一个唯一的 Url 地址
                 }
             },new ProgressCallback() {
@@ -276,12 +293,12 @@ public class MainActivity extends ActivityBase {
         if (android.os.Environment.getExternalStorageState().equals(
                 android.os.Environment.MEDIA_MOUNTED)) {
             File tempFile = new File(Environment.getExternalStorageDirectory(), "temp.jpg");
+
             try {
                 tempFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             return tempFile;
         }
         return null;

@@ -14,3 +14,6 @@
 
 ## 加载动画地址
 - [github.com](https://github.com/zzz40500/android-shapeLoadingView)
+
+##LuBan 图片压缩
+- [github.com] (https://github.com/Curzibn/Luban)

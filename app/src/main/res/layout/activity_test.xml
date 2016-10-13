@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <WebView
-        android:id="@+id/webView"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <Button
+            android:onClick="camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:onClick="real"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:visibility="gone"
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:src="@drawable/ic_share"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        app:layout_anchorGravity="bottom|end"
-        />
-    <include
-        layout="@layout/layout_loading"
-        android:id="@+id/layout_loading"
-        />
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/image_real"
+            android:src="@drawable/cat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</ScrollView>

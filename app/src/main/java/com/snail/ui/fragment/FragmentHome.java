@@ -17,8 +17,8 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.snail.R;
 import com.snail.news.ActivityNews;
 import com.snail.transforms.CubeOutTransformer;
-import com.snail.transforms.DefaultTransformer;
 import com.snail.transforms.TransformerItem;
+import com.snail.ui.activity.ActivitySimpleDetail;
 import com.snail.ui.activity.ActivityTest;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
@@ -64,7 +64,7 @@ public class FragmentHome extends Fragment {
             }
         },localImages)
         .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
-        mBanner.startTurning(3000);//设置轮播开始自动循环
+//        mBanner.startTurning(3000);//设置轮播开始自动循环
         mBanner.setScrollDuration(2000);//设置滑动速度
         try {
             mBanner.getViewPager().setPageTransformer(true,new TransformerItem(CubeOutTransformer.class).clazz.newInstance());//设置轮播动画
@@ -113,6 +113,10 @@ public class FragmentHome extends Fragment {
                                 Intent intent1 = new Intent(getActivity(),ActivityTest.class);
                                 intent1.putExtra("url_3w","http://3g.163.com/tech/16/1012/10/C35V3Q2200097U81.html");
                                 startActivity(intent1);
+                                startActivity(new Intent(getContext(), ActivitySimpleDetail.class));
+                                break;
+                            case 1:
+                                startActivity(new Intent(getActivity(), ActivityTest.class));
                                 break;
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);
