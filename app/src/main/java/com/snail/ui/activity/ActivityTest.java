@@ -105,7 +105,7 @@ public class ActivityTest extends ActivityBase {
     private class HelloWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
+            view.loadUrl("https://m.douban.com/book/subject/26840552/");
             return true;
         }
     }
