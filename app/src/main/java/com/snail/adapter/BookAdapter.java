@@ -19,6 +19,8 @@ import com.google.gson.Gson;
 import com.snail.R;
 import com.snail.bean.Book;
 import com.snail.bean.Notes;
+import com.snail.news.listener.OnItemClickListener;
+import com.snail.news.listener.OnItemLongClickListener;
 import com.snail.ui.activity.BookActivity;
 import com.snail.utils.ImageLoader;
 
@@ -38,9 +40,24 @@ public class BookAdapter extends RecyclerView.Adapter {
     private Context context;
     private ArrayList<Book> list;
     private MyViewHolder myViewHolder;
+    private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
+
+    public Book getBook(int position) {
+        return list.get(position);
+    }
+
     public BookAdapter(Context context, ArrayList<Book> list) {
         this.context = context;
         this.list = list;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
     }
 
     @Override
@@ -51,12 +68,28 @@ public class BookAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof MyViewHolder) {
             Book book = list.get(position);
             ((MyViewHolder) holder).tv_book_title.setText(book.getTitle());
             ((MyViewHolder) holder).tv_book_info.setText(book.getInfo());
             ImageLoader.getInstance().displayImage(context,book.getCover(),((MyViewHolder) holder).cover);
+
+            final int pos = holder.getLayoutPosition();
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(holder.itemView,pos);
+                }
+            });
+
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    onItemLongClickListener.onItemLongClick(holder.itemView,pos);
+                    return false;
+                }
+            });
         }
     }
 

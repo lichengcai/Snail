@@ -110,7 +110,9 @@ public class FragmentHome extends Fragment {
                         Intent intent = new Intent();
                         switch (arg2) {
                             case 0:
-                                startActivity(new Intent(getContext(), ActivityTest.class));
+                                Intent intent1 = new Intent(getActivity(),ActivityTest.class);
+                                intent1.putExtra("url_3w","http://3g.163.com/tech/16/1012/10/C35V3Q2200097U81.html");
+                                startActivity(intent1);
                                 break;
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);

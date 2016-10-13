@@ -8,6 +8,7 @@ public class Book {
     private String title;
     private String cover;
     private String info;
+    private String url;
 
     public String getInfo() {
         return info;
@@ -18,10 +19,11 @@ public class Book {
     }
 
 
-    public Book(String title, String cover,String info) {
+    public Book(String title, String cover,String info,String url) {
         this.title = title;
         this.cover = cover;
         this.info = info;
+        this.url = url;
     }
 
     public String getTitle() {
@@ -38,5 +40,13 @@ public class Book {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

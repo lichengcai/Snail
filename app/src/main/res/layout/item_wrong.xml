@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:background="@drawable/shape_wrong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/ic_test_3"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="170dp" />
+
+        <TextView
+            android:padding="5dp"
+            android:text="这里是错误标签"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+        <TextView
+            android:background="@color/divideColor"
+            android:padding="5dp"
+            android:text="这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+</LinearLayout>

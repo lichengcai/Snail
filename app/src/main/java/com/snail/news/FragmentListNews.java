@@ -165,11 +165,14 @@ public class FragmentListNews extends Fragment implements NewsListView{
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount() && mAdapter.isShowFooter()) {
-                    pageIndex +=Urls.PAZE_SIZE;
-                    mPresenter.setNewsList(mType,pageIndex ,false,true);
-                    Log.d("addAllListener","onScrollStateChanged");
+                if (mAdapter != null) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount() && mAdapter.isShowFooter()) {
+                        pageIndex +=Urls.PAZE_SIZE;
+                        mPresenter.setNewsList(mType,pageIndex ,false,true);
+                        Log.d("addAllListener","onScrollStateChanged");
+                    }
                 }
+
             }
 
             @Override

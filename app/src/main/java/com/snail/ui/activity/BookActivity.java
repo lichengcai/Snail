@@ -1,5 +1,6 @@
 package com.snail.ui.activity;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +8,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.snail.R;
 import com.snail.adapter.BookAdapter;
 import com.snail.bean.Book;
 import com.snail.bean.Notes;
+import com.snail.news.listener.OnItemClickListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,14 +46,27 @@ public class BookActivity extends ActivityBase {
         recyclerBook.setLayoutManager(new LinearLayoutManager(this));
 //        NotesRecyclerAdapter notesRecyclerAdapter = new NotesRecyclerAdapter(this, listBooks);
 
+
     }
+
+
     private  void initHandler() {
         handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 if (msg.what == 0) {
-                    BookAdapter bookAdapter = new BookAdapter(BookActivity.this, listBooks);
+                    final BookAdapter bookAdapter = new BookAdapter(BookActivity.this, listBooks);
+                    bookAdapter.setOnItemClickListener(new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Intent intent = new Intent(BookActivity.this,ActivityTest.class);
+                            Book book = bookAdapter.getBook(position);
+                            intent.putExtra("url_3w",book.getUrl());
+                            startActivity(intent);
+
+                        }
+                    });
                     recyclerBook.setAdapter(bookAdapter);
                 }
             }
@@ -81,7 +97,7 @@ public class BookActivity extends ActivityBase {
                              ) {
                             Map cover = (Map) obj.get("cover");
 
-                            listBooks.add( new Book(obj.get("title").toString(), cover.get("url").toString(),obj.get("info").toString()));
+                            listBooks.add( new Book(obj.get("title").toString(), cover.get("url").toString(),obj.get("info").toString(),obj.get("url").toString()));
                         }
 
                         Log.i("map to string", data.toString());
