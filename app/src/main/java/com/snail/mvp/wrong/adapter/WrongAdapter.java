@@ -37,8 +37,8 @@ public class WrongAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof WrongHolder) {
             WrongBean wrongBean = mData.get(position);
-            ((WrongHolder) holder).text_title.setText(wrongBean.getTitle());
-            ((WrongHolder) holder).text_content.setText(wrongBean.getContent());
+            ((WrongHolder) holder).text_title.setText("错误标签：" + wrongBean.getTitle());
+            ((WrongHolder) holder).text_content.setText("错误描述：" + wrongBean.getContent());
             Log.d("onBindViewHolder","imageUrl---"+ wrongBean.getImgUrl());
             ImageLoader.getInstance().displayImage(mContext,wrongBean.getImgUrl(),((WrongHolder) holder).imageView);
         }
