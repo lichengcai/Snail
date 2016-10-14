@@ -46,7 +46,7 @@ public class WrongPresenterImpl implements WrongPresenter {
             @Override
             public void onQuerySuccess(List<AVObject> avObjects) {
                 ArrayList<WrongBean> arrayList = new ArrayList<>();
-                if (arrayList.size() == 0) {
+                if (avObjects.size() == 0) {
                     mWrongView.setWrongBeanEmpty();
                 }else {
                     for (int i=0; i<avObjects.size(); i++) {
@@ -57,6 +57,7 @@ public class WrongPresenterImpl implements WrongPresenter {
 
                         arrayList.add(wrongBean);
                     }
+
 
                     mWrongView.setWrongBeanSuccess(arrayList);
                 }
