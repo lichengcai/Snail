@@ -16,6 +16,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.snail.R;
 import com.snail.mvp.news.ActivityNews;
+import com.snail.mvp.wrong.ActivityWrongEdit;
 import com.snail.transforms.CubeOutTransformer;
 import com.snail.transforms.TransformerItem;
 import com.snail.ui.activity.ActivitySimpleDetail;
@@ -117,6 +118,9 @@ public class FragmentHome extends Fragment {
                                 break;
                             case 1:
                                 startActivity(new Intent(getActivity(), ActivityTest.class));
+                                break;
+                            case 2:
+                                startActivity(new Intent(getActivity(), ActivityWrongEdit.class));
                                 break;
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);

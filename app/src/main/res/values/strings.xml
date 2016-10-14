@@ -10,7 +10,9 @@
     <string name="clickAgain">点击重新加载</string>
 
 
-
+    <string name="wrong_title">添加错误标签</string>
+    <string name="wrong_content">添加错误描述</string>
+    <string name="wrong_image">请添加图片</string>
         <string name="button_type">Button Type</string>
         <string name="circle_button">Circle Button</string>
         <string name="hamburger_button">Hamburger Button</string>

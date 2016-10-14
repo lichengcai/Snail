@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:padding="7dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,19 +12,30 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:src="@drawable/mark"
+            android:scaleType="fitXY"
+            android:background="@drawable/shape_wrong"
             android:id="@+id/image_wrong"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
         <EditText
-            android:id="@+id/text_wrong_title"
+            android:hint="@string/wrong_title"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:background="@drawable/shape_wrong"
+            android:id="@+id/edit_wrong_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="100dp" />
 
         <EditText
-            android:id="@+id/text_wrong_content"
+            android:hint="@string/wrong_content"
+            android:gravity="start"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_wrong"
+            android:id="@+id/edit_wrong_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="270dp" />
     </LinearLayout>
 
     <com.nightonke.boommenu.BoomMenuButton
@@ -33,7 +45,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         app:boom_inActionBar="false"
         app:boom_button_color="@color/gray"
         />

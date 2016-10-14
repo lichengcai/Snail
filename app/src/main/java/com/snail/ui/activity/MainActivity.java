@@ -49,8 +49,6 @@ public class MainActivity extends ActivityBase {
     @BindView(R.id.mFloatingActionButton)
     FloatingActionButton mFloatingActionButton;
 
-    private FragmentWrite mFragmentWrite;
-    private File file;
     /**
      * Fragment集合
      */
@@ -94,9 +92,7 @@ public class MainActivity extends ActivityBase {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (mFragmentWrite != null){
-            mFragmentWrite.onWidowFocus();
-        }
+
 
     }
 
@@ -109,9 +105,8 @@ public class MainActivity extends ActivityBase {
         mBottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.btn_tab_home_normal, "Home"))
                 .addItem(new BottomNavigationItem(R.drawable.btn_tab_wrong_normal, "Wrong"))
                 .addItem(new BottomNavigationItem(R.drawable.btn_tab_more_normal, "More")).initialise();
-        mFragmentWrite = new FragmentWrite();
         mFragmentList.add(new FragmentHome());
-        mFragmentList.add(mFragmentWrite);
+        mFragmentList.add(new FragmentWrite());
         mFragmentList.add(new FragmentMore());
 
         mAdapter = new FirstPagerAdapter(getSupportFragmentManager(), mFragmentList);

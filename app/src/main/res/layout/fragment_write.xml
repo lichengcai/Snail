@@ -26,15 +26,19 @@
         layout="@layout/layout_fail"/>
 
 
-    <com.nightonke.boommenu.BoomMenuButton
-        android:id="@+id/boom"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/mFloatingActionButton"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/copy"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        app:fabSize="normal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="20dp"
-        app:boom_inActionBar="false"
-        app:boom_button_color="@color/gray"
-        />
+        android:layout_marginEnd="16dp" />
 </RelativeLayout>
