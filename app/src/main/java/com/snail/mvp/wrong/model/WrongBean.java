@@ -9,6 +9,7 @@ public class WrongBean {
     private String content;
     private String imgUrl;
 
+
     @Override
     public String toString() {
         return "WrongBean{" +

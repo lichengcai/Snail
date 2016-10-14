@@ -49,4 +49,19 @@
         app:boom_inActionBar="false"
         app:boom_button_color="@color/gray"
         />
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/linear_loading"
+        android:background="#60000000"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.mingle.widget.LoadingView
+            android:id="@+id/loadView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+    </LinearLayout>
 </RelativeLayout>

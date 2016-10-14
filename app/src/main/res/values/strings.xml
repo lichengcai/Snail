@@ -13,6 +13,9 @@
     <string name="wrong_title">添加错误标签</string>
     <string name="wrong_content">添加错误描述</string>
     <string name="wrong_image">请添加图片</string>
+    <string name="upload_success">保存成功</string>
+    <string name="upload_fail">保存失败</string>
+    <string name="data_empty">数据为空</string>
         <string name="button_type">Button Type</string>
         <string name="circle_button">Circle Button</string>
         <string name="hamburger_button">Hamburger Button</string>

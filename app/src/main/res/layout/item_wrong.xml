@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_margin="5dp"
         android:orientation="vertical"
         android:background="@drawable/shape_wrong"
@@ -13,14 +8,15 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/image_wrong"
             android:src="@drawable/ic_test_3"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="170dp" />
 
         <TextView
+            android:id="@+id/text_title"
             android:padding="5dp"
-            android:text="这里是错误标签"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -30,23 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"/>
         <TextView
+            android:id="@+id/text_content"
             android:background="@color/divideColor"
             android:padding="5dp"
-            android:text="这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述这里是错误详情描述"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
-    <com.nightonke.boommenu.BoomMenuButton
-        android:id="@+id/boom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="20dp"
-        app:boom_inActionBar="false"
-        app:boom_button_color="@color/colorPrimary"
-        app:boom_button_pressed_color="@color/colorPrimary"
-        />
-</RelativeLayout>

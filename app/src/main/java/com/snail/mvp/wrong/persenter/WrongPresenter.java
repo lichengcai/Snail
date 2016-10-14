@@ -8,4 +8,6 @@ import java.io.File;
 
 public interface WrongPresenter {
     void uploadImageFile(File file,String title,String content);
+
+    void queryWrongBean();
 }
