@@ -12,6 +12,8 @@
 
 
     <color name="bg_activity_splash">#0091ff</color>
+    <color name="red">#ff000d</color>
     <color name="transparent">#00000000</color>
     <color name="icons">#FFFFFF</color>
+    <color name="material_white">#f9f9f9</color>
 </resources>

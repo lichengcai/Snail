@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.snail.R;
-import com.snail.news.ActivityNews;
+import com.snail.mvp.news.ActivityNews;
 import com.snail.transforms.CubeOutTransformer;
 import com.snail.transforms.TransformerItem;
 import com.snail.ui.activity.ActivitySimpleDetail;

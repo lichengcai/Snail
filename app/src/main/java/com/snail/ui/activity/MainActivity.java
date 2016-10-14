@@ -22,12 +22,10 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.ProgressCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.snail.R;
 import com.snail.adapter.FirstPagerAdapter;
-import com.snail.transforms.CubeOutTransformer;
 import com.snail.transforms.DefaultTransformer;
 import com.snail.transforms.TransformerItem;
 import com.snail.ui.fragment.FragmentHome;
@@ -38,7 +36,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +49,7 @@ public class MainActivity extends ActivityBase {
     @BindView(R.id.mFloatingActionButton)
     FloatingActionButton mFloatingActionButton;
 
+    private FragmentWrite mFragmentWrite;
     private File file;
     /**
      * Fragment集合
@@ -93,6 +91,15 @@ public class MainActivity extends ActivityBase {
         });
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (mFragmentWrite != null){
+            mFragmentWrite.onWidowFocus();
+        }
+
+    }
+
     /**
      * 初始化
      */
@@ -102,8 +109,9 @@ public class MainActivity extends ActivityBase {
         mBottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.btn_tab_home_normal, "Home"))
                 .addItem(new BottomNavigationItem(R.drawable.btn_tab_wrong_normal, "Wrong"))
                 .addItem(new BottomNavigationItem(R.drawable.btn_tab_more_normal, "More")).initialise();
+        mFragmentWrite = new FragmentWrite();
         mFragmentList.add(new FragmentHome());
-        mFragmentList.add(new FragmentWrite());
+        mFragmentList.add(mFragmentWrite);
         mFragmentList.add(new FragmentMore());
 
         mAdapter = new FirstPagerAdapter(getSupportFragmentManager(), mFragmentList);

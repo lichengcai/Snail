@@ -25,20 +25,16 @@
         android:id="@+id/layout_fail"
         layout="@layout/layout_fail"/>
 
-    <TextView
-        android:text="FragmentWrite"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/boom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:src="@drawable/ic_share"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        app:layout_anchorGravity="bottom|end"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        app:boom_inActionBar="false"
+        app:boom_button_color="@color/gray"
         />
 </RelativeLayout>

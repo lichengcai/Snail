@@ -17,3 +17,5 @@
 
 ##LuBan 图片压缩
 - [github.com] (https://github.com/Curzibn/Luban)
+
+- [爆炸菜单] (https://github.com/Nightonke/BoomMenu/blob/master/README-ZH.md)

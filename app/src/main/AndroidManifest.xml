@@ -49,7 +49,7 @@
             android:name=".ui.activity.BookActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-        <activity android:name=".news.ActivityNews"
+        <activity android:name=".mvp.news.ActivityNews"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"
             />
@@ -61,7 +61,7 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTop"
             />
-
+        />
     </application>
 
 </manifest>

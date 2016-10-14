@@ -3,7 +3,6 @@ package com.snail.ui.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,15 +13,12 @@ import com.google.gson.Gson;
 import com.snail.R;
 import com.snail.adapter.BookAdapter;
 import com.snail.bean.Book;
-import com.snail.bean.Notes;
-import com.snail.news.listener.OnItemClickListener;
+import com.snail.mvp.news.listener.OnItemClickListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
