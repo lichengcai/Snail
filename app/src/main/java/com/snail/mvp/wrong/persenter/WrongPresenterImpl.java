@@ -49,7 +49,8 @@ public class WrongPresenterImpl implements WrongPresenter {
                 if (avObjects.size() == 0) {
                     mWrongView.setWrongBeanEmpty();
                 }else {
-                    for (int i=0; i<avObjects.size(); i++) {
+                    int len = avObjects.size();
+                    for (int i = len-1; i > 0; i--) {
                         WrongBean wrongBean = new WrongBean();
                         wrongBean.setContent(avObjects.get(i).get("content").toString());
                         wrongBean.setTitle(avObjects.get(i).get("title").toString());
