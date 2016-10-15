@@ -117,10 +117,8 @@ public class FragmentHome extends Fragment {
                                 startActivity(new Intent(getContext(), ActivitySimpleDetail.class));
                                 break;
                             case 1:
-                                startActivity(new Intent(getActivity(), ActivityTest.class));
                                 break;
                             case 2:
-                                startActivity(new Intent(getActivity(), ActivityWrongEdit.class));
                                 break;
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);
@@ -131,7 +129,7 @@ public class FragmentHome extends Fragment {
                                 startActivity(intent);
                                 break;
                             case 8:
-                                intent.setClass(getContext(), ActivityNews.class);
+                                intent.setClass(getContext(), ActivityNews.class);git
                                 startActivity(intent);
                                 break;
                             default:

@@ -56,7 +56,7 @@ public class BookActivity extends ActivityBase {
                     bookAdapter.setOnItemClickListener(new OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            Intent intent = new Intent(BookActivity.this,ActivityTest.class);
+                            Intent intent = new Intent(BookActivity.this,ActivitySimpleDetail.class);
                             Book book = bookAdapter.getBook(position);
                             intent.putExtra("url_3w",book.getUrl());
                             startActivity(intent);
