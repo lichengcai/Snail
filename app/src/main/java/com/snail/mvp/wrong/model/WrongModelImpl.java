@@ -63,16 +63,19 @@ public class WrongModelImpl implements WrongModel {
         avObjectAVQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
-                Log.d("AVQuery"," wrongBean list---" + list.size());
-                for (int i=0; i<list.size(); i++) {
-                    Log.d("AVQuery"," wrongBean list---" + list.get(i).get("title"));
+                if (list != null) {
+                    Log.d("AVQuery"," wrongBean list---" + list.size());
+                    for (int i=0; i<list.size(); i++) {
+                        Log.d("AVQuery"," wrongBean list---" + list.get(i).get("title"));
+                    }
+
+                    if (e == null) {
+                        onQueryListener.onQuerySuccess( list);
+                    }else {
+                        onQueryListener.onQueryFail();
+                    }
                 }
 
-                if (e == null) {
-                    onQueryListener.onQuerySuccess( list);
-                }else {
-                    onQueryListener.onQueryFail();
-                }
             }
         });
     }
