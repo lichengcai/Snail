@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#FF21272B">
-    <item>
-        <shape android:shape="rectangle">
-            <solid android:color="#FFFFFF" />
-            <corners android:radius="4dp" />
-        </shape>
-    </item>
-    <item android:drawable="@drawable/round_corners"/>
-</ripple>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <!-- 默认时的背景图片-->
+    <item android:drawable="@color/white" />
+    <!-- 没有焦点时的背景图片 -->
+    <item android:state_window_focused="false"
+        android:drawable="@color/white" />
+    <!-- 非触摸模式下获得焦点并单击时的背景图片 -->
+    <item android:state_focused="true" android:state_pressed="true"   android:drawable= "@color/black" />
+    <!-- 触摸模式下单击时的背景图片-->
+    <item android:state_focused="false" android:state_pressed="true"   android:drawable="@color/avoscloud_feedback_thread_actionbar_blue" />
+    <!--选中时的图片背景-->
+    <item android:state_selected="true"   android:drawable="@color/colorPrimary" />
+    <!--获得焦点时的图片背景-->
+    <item android:state_focused="true"   android:drawable="@color/default_boom_button_color" />
+</selector>
