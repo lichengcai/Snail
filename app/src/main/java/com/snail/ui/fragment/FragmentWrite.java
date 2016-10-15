@@ -180,6 +180,7 @@ public class FragmentWrite extends Fragment implements WrongView{
 
     @Override
     public void setWrongBeanSuccess(ArrayList<WrongBean> arrayList) {
+
         mAdapter = new WrongAdapter(getActivity(),arrayList);
         mHandler.sendEmptyMessage(MSG_GET_WRONG_SUCCESS);
     }

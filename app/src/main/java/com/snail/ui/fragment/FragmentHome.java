@@ -65,7 +65,7 @@ public class FragmentHome extends Fragment {
             }
         },localImages)
         .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
-//        mBanner.startTurning(3000);//设置轮播开始自动循环
+        mBanner.startTurning(3000);//设置轮播开始自动循环
         mBanner.setScrollDuration(2000);//设置滑动速度
         try {
             mBanner.getViewPager().setPageTransformer(true,new TransformerItem(CubeOutTransformer.class).clazz.newInstance());//设置轮播动画
@@ -115,6 +115,8 @@ public class FragmentHome extends Fragment {
                                 startActivity(intent1);
                                 break;
                             case 1:
+                                Intent intent2 = new Intent(getActivity(),ActivityTest.class);
+                                startActivity(intent2);
                                 break;
                             case 2:
                                 break;
