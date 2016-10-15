@@ -111,10 +111,8 @@ public class FragmentHome extends Fragment {
                         Intent intent = new Intent();
                         switch (arg2) {
                             case 0:
-                                Intent intent1 = new Intent(getActivity(),ActivityTest.class);
-                                intent1.putExtra("url_3w","http://3g.163.com/tech/16/1012/10/C35V3Q2200097U81.html");
+                                Intent intent1 = new Intent(getActivity(),ActivityWrongEdit.class);
                                 startActivity(intent1);
-                                startActivity(new Intent(getContext(), ActivitySimpleDetail.class));
                                 break;
                             case 1:
                                 break;
@@ -129,7 +127,7 @@ public class FragmentHome extends Fragment {
                                 startActivity(intent);
                                 break;
                             case 8:
-                                intent.setClass(getContext(), ActivityNews.class);git
+                                intent.setClass(getContext(), ActivityNews.class);
                                 startActivity(intent);
                                 break;
                             default:
@@ -146,7 +144,7 @@ public class FragmentHome extends Fragment {
         // map1 错误回顾
         HashMap<String, Object> map1 = new HashMap<String, Object>();
         map1.put("ItemImage", R.drawable.palace_1);
-        map1.put("ItemText", "错误回顾");
+        map1.put("ItemText", "错误编辑");
         meumList.add(map1);
 
         // map2 今日闯关
