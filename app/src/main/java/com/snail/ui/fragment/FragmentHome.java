@@ -23,6 +23,7 @@ import com.snail.ui.activity.ActivitySimpleDetail;
 import com.snail.ui.activity.ActivityTest;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
+import com.snail.ui.activity.WordsActivity;
 import com.snail.widget.LocalImageHolderView;
 
 import java.lang.reflect.Field;
@@ -119,6 +120,8 @@ public class FragmentHome extends Fragment {
                                 startActivity(intent2);
                                 break;
                             case 2:
+                                Intent wordIntent = new Intent(getActivity(), WordsActivity.class);
+                                startActivity(wordIntent);
                                 break;
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);

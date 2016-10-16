@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:src="@drawable/mark"
+            android:src="@drawable/camera"
             android:scaleType="fitXY"
             android:background="@drawable/shape_wrong"
             android:id="@+id/image_wrong"
