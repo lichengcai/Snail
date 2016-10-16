@@ -11,9 +11,12 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
+            app:tabTextAppearance="@android:style/TextAppearance.Holo.Medium"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            app:tabIndicatorColor="@color/icons"/>
+            android:background="@color/colorPrimary"
+            app:tabTextColor="@color/divideColor"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/white"/>
     </android.support.design.widget.AppBarLayout>
 
 

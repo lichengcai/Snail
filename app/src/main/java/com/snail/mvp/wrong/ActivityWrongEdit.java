@@ -109,11 +109,8 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
         mImageWrong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                intentToCamera();
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(intent,1);
-                }
+                intentToCamera();
+
             }
         });
     }
