@@ -1,6 +1,7 @@
 package com.snail.ui.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.snail.R;
 import com.snail.mvp.news.ActivityNews;
 import com.snail.mvp.wrong.ActivityWrongEdit;
@@ -23,6 +25,7 @@ import com.snail.ui.activity.ActivitySimpleDetail;
 import com.snail.ui.activity.ActivityTest;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
+import com.snail.ui.activity.WordsActivity;
 import com.snail.widget.LocalImageHolderView;
 import com.snail.widget.NetworkImageHolderView;
 
@@ -67,7 +70,23 @@ public class FragmentHome extends Fragment {
             public NetworkImageHolderView createHolder() {
                 return new NetworkImageHolderView();
             }
-        },netImages).setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
+        },netImages).setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused})
+        .setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                String url = null;
+                if (position == 0) {
+                    url = "http://www.koo.cn/zhuanti/ss_wap/";
+                }else if (position ==1) {
+                    url = "http://www.koo.cn/zhuanti/17gkdgjx_wap/";
+                }else if (position == 2) {
+                    url = "http://www.koo.cn/zhuanti/17gkqj_wap/";
+                }
+                Uri uri = Uri.parse(url);
+                Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(it);
+            }
+        });
         mBanner.startTurning(3000);//设置轮播开始自动循环
         mBanner.setScrollDuration(2000);//设置滑动速度
         try {
@@ -114,16 +133,16 @@ public class FragmentHome extends Fragment {
                         Intent intent = new Intent();
                         switch (arg2) {
                             case 0:
-                                Intent intent1 = new Intent(getActivity(),ActivityTest.class);
-                                intent1.putExtra("url_3w","http://3g.163.com/tech/16/1012/10/C35V3Q2200097U81.html");
+                                Intent intent1 = new Intent(getActivity(),ActivityWrongEdit.class);
                                 startActivity(intent1);
-                                startActivity(new Intent(getContext(), ActivitySimpleDetail.class));
                                 break;
                             case 1:
-                                startActivity(new Intent(getActivity(), ActivityTest.class));
+                                Intent intent2 = new Intent(getActivity(),ActivityTest.class);
+                                startActivity(intent2);
                                 break;
                             case 2:
-                                startActivity(new Intent(getActivity(), ActivityWrongEdit.class));
+                                Intent wordIntent = new Intent(getActivity(), WordsActivity.class);
+                                startActivity(wordIntent);
                                 break;
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);
@@ -151,7 +170,7 @@ public class FragmentHome extends Fragment {
         // map1 错误回顾
         HashMap<String, Object> map1 = new HashMap<String, Object>();
         map1.put("ItemImage", R.drawable.palace_1);
-        map1.put("ItemText", "错误回顾");
+        map1.put("ItemText", "错误编辑");
         meumList.add(map1);
 
         // map2 今日闯关

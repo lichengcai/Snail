@@ -11,14 +11,14 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:hardwareAccelerated="false"
         android:name=".SnailApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.ActivitySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,45 +26,46 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.ActivitySplash"
+            android:name=".ui.activity.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ActivityLogin"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".ui.activity.NoteActivity"
-                  android:launchMode="singleTop"
-                  android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.NotesEditActivity"
-                  android:launchMode="singleTop"
-                  android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.NoteActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.NotesEditActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.NewsActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.BookActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.news.ActivityNews"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".mvp.news.ActivityNews"
             android:launchMode="singleTop"
-            />
-        <activity android:name=".ui.activity.ActivitySimpleDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivitySimpleDetail"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".ui.activity.ActivityTest"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityTest"
             android:launchMode="singleTop"
-            />
-        <activity android:name=".mvp.wrong.ActivityWrongEdit"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.wrong.ActivityWrongEdit"
             android:launchMode="singleTop"
-            />
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.WordsActivity"></activity>
     </application>
 
 </manifest>

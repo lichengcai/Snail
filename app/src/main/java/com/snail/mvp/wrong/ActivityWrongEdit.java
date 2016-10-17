@@ -33,7 +33,9 @@ import com.snail.mvp.wrong.persenter.WrongPresenterImpl;
 import com.snail.mvp.wrong.view.WrongView;
 import com.snail.ui.activity.ActivityBase;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -72,7 +74,7 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
         private ActivityWrongEdit wrongEdit;
 
         public WrongEditHandler(ActivityWrongEdit activityWrongEdit) {
-            ref = new WeakReference<ActivityWrongEdit>(activityWrongEdit);
+            ref = new WeakReference<>(activityWrongEdit);
             wrongEdit = ref.get();
         }
 
@@ -82,6 +84,9 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
             switch (msg.what) {
                 case MSG_GET_LUBAN_FILE_SUCCESS:
                     if (msg.obj != null) {
+                        if (wrongEdit.mLinearLoading != null) {
+                            wrongEdit.mLinearLoading.setVisibility(View.GONE);
+                        }
                         wrongEdit.mLuBanFile = (File) msg.obj;
                         wrongEdit.mImageWrong.setImageBitmap(BitmapFactory.decodeFile(wrongEdit.mImageFile.getAbsolutePath()));
                     }
@@ -108,16 +113,27 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
             @Override
             public void onClick(View v) {
                 intentToCamera();
+
             }
         });
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
+                case 1:
+                    Bundle bundle = data.getExtras();
+                    Bitmap bitmap = (Bitmap) bundle.get("data");
+                    mImageWrong.setImageBitmap(bitmap);
+                    break;
                 case INTENT_TO_CAMERA:
+                    if (mLinearLoading != null) {
+                        mLinearLoading.setVisibility(View.VISIBLE);
+                    }
                     Luban.get(ActivityWrongEdit.this)
                             .load(mImageFile)
                             .putGear(Luban.THIRD_GEAR)
@@ -137,7 +153,6 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
 
                                 }
                             }).launch();
-//                    mImageWrong.setImageBitmap(BitmapFactory.decodeFile(mImageFile.getAbsolutePath()));
                     break;
             }
         }

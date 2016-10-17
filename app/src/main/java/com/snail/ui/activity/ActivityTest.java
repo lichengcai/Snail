@@ -22,25 +22,21 @@ import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
-import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.GetDataCallback;
 import com.avos.avoscloud.ProgressCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.snail.R;
 import com.snail.utils.ImageLoader;
-import com.snail.widget.flipshare.FlipShareView;
-import com.snail.widget.flipshare.ShareItem;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import top.zibin.luban.Luban;
-import top.zibin.luban.OnCompressListener;
 
 /**
  * Created by chengcai on 2016/10/11.
@@ -77,17 +73,17 @@ public class ActivityTest extends ActivityBase {
     }
 
     public void camera(View view) {
-//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (intent.resolveActivity(getPackageManager()) != null) {
-//            startActivityForResult(intent,0);
-//        }
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent,0);
+        }
 
 //        download(avfile);
 //        AVFile avFile = new AVFile("test.png",url,null);
 //        download(avFile);
 //        testDownloadImage();
-        String url = "http://ac-3www917q.clouddn.com/H0In9XhBO7ImB8AUr2XABTeJ6bP9pVRgyHOJIlAj.png";
-        ImageLoader.getInstance().displayImage(ActivityTest.this,url,mImage_real);
+//        String url = "http://ac-3www917q.clouddn.com/H0In9XhBO7ImB8AUr2XABTeJ6bP9pVRgyHOJIlAj.png";
+//        ImageLoader.getInstance().displayImage(ActivityTest.this,url,mImage_real);
     }
 
 
@@ -97,6 +93,22 @@ public class ActivityTest extends ActivityBase {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
         startActivityForResult(intent,1);
     }
+
+    //    Bitmap对象保存味图片文件
+    public File saveBitmapFile(Bitmap bitmap){
+        File file=new File("/mnt/sdcard/pic/01.jpg");//将要保存图片的路径
+        try {
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            bos.flush();
+            bos.close();
+            return file;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -106,6 +118,8 @@ public class ActivityTest extends ActivityBase {
             if (requestCode == 0) {
                 Bundle bundle = data.getExtras();
                 Bitmap bitmap = (Bitmap) bundle.get("data");
+//                File file = saveBitmapFile(bitmap);
+//                Log.d("onActivityResult","file size---" + file.length());
                 mImage.setImageBitmap(bitmap);
             }
             if (requestCode == 1) {
