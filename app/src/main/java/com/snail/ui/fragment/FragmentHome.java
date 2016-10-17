@@ -24,6 +24,7 @@ import com.snail.ui.activity.ActivityTest;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
 import com.snail.widget.LocalImageHolderView;
+import com.snail.widget.NetworkImageHolderView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -40,7 +41,8 @@ public class FragmentHome extends Fragment {
     @BindView(R.id.banner)
     ConvenientBanner mBanner;
 
-    private ArrayList<Integer> localImages = new ArrayList<Integer>();
+    private ArrayList<String> netImages = new ArrayList<>();
+    private ArrayList<Integer> localImages = new ArrayList<>();
     private  GridView gridview;
     @Nullable
     @Override
@@ -57,15 +59,16 @@ public class FragmentHome extends Fragment {
         for (int i=0; i<7; i++) {
             localImages.add(getResId("ic_test_" + i, R.drawable.class));
         }
-        mBanner.setPages(new CBViewHolderCreator<LocalImageHolderView>() {
-
+        netImages.add("http://www.koo.cn/upload/201610122111_1476277886822570.jpg");
+        netImages.add("http://www.koo.cn/upload/201610121100_1476241200591121.jpg");
+        netImages.add("http://www.koo.cn/upload/201609291157_1475121429590893.jpg");
+        mBanner.setPages(new CBViewHolderCreator<NetworkImageHolderView>(){
             @Override
-            public LocalImageHolderView createHolder() {
-                return new LocalImageHolderView();
+            public NetworkImageHolderView createHolder() {
+                return new NetworkImageHolderView();
             }
-        },localImages)
-        .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
-//        mBanner.startTurning(3000);//设置轮播开始自动循环
+        },netImages).setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
+        mBanner.startTurning(3000);//设置轮播开始自动循环
         mBanner.setScrollDuration(2000);//设置滑动速度
         try {
             mBanner.getViewPager().setPageTransformer(true,new TransformerItem(CubeOutTransformer.class).clazz.newInstance());//设置轮播动画
