@@ -17,6 +17,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.snail.R;
+import com.snail.mvp.dictionary.ActivityChDictionary;
 import com.snail.mvp.news.ActivityNews;
 import com.snail.mvp.wrong.ActivityWrongEdit;
 import com.snail.transforms.CubeOutTransformer;
@@ -137,7 +138,7 @@ public class FragmentHome extends Fragment {
                                 startActivity(intent1);
                                 break;
                             case 1:
-                                Intent intent2 = new Intent(getActivity(),ActivityTest.class);
+                                Intent intent2 = new Intent(getActivity(),ActivityChDictionary.class);
                                 startActivity(intent2);
                                 break;
                             case 2:
@@ -176,7 +177,7 @@ public class FragmentHome extends Fragment {
         // map2 今日闯关
         HashMap<String, Object> map2 = new HashMap<String, Object>();
         map2.put("ItemImage", R.drawable.palace_2);
-        map2.put("ItemText", "今日闯关");
+        map2.put("ItemText", "新华字典");
         meumList.add(map2);
 
 
@@ -196,7 +197,7 @@ public class FragmentHome extends Fragment {
         // map5 题库
         HashMap<String, Object> map5 = new HashMap<String, Object>();
         map5.put("ItemImage", R.drawable.palace_5);
-        map5.put("ItemText", "题库");
+        map5.put("ItemText", "成语查询");
         meumList.add(map5);
 
         // map6 题库
