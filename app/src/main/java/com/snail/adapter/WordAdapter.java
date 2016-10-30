@@ -10,14 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.snail.R;
-import com.snail.bean.Book;
-import com.snail.bean.Notes;
 import com.snail.bean.Word;
 import com.snail.utils.Player;
 
 import java.util.ArrayList;
-
-import static android.view.LayoutInflater.*;
 
 /**
  * Created by zhangshibiao on 16/10/15.

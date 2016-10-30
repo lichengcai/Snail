@@ -7,11 +7,14 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.snail.R;
 import com.snail.utils.Player;
@@ -43,8 +46,23 @@ public class FragmentMore extends Fragment {
 
         skbProgress = (SeekBar) view.findViewById(R.id.skbProgress);
         skbProgress.setOnSeekBarChangeListener(new SeekBarChangeEvent());
+        TextView richView= (TextView) view.findViewById(R.id.rich_view);
+        String html="<font color='red'>样式一</font> <br>";
+        html+="<font color='#0000FF'> <big> <i> 样式二 </i> </big> <font>";
+        html+="<font color='@"+android.R.color.white+"'> <tt> <b> <big> <u> 样式三 </u> </big> </b> </tt> </font> <br>";
+        html+="<big> <a href='http://blog.csdn.net/a_mean'>我的博客:http://blog.csdn.net/a_mean </a> </big>";
+
+        CharSequence charSequence = Html.fromHtml(html);
+        richView.setText(charSequence);
+
+        richView.setMovementMethod(LinkMovementMethod.getInstance());
 //        player = new Player(skbProgress);
         player = new Player();
+
+
+
+
+
         return view;
     }
 
