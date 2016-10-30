@@ -26,6 +26,7 @@ import com.snail.transforms.TransformerItem;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
 import com.snail.ui.activity.PhraseActivity;
+import com.snail.ui.activity.QuestionEditActivity;
 import com.snail.ui.activity.WordsActivity;
 import com.snail.widget.NetworkImageHolderView;
 
@@ -150,6 +151,11 @@ public class FragmentHome extends Fragment {
                                 break;
                             case 5:
                                 intent.setClass(getContext(), QuestionActivity.class);
+                                startActivity(intent);
+                                break;
+                            case 6:
+                                // 暂时放这
+                                intent.setClass(getContext(), QuestionEditActivity.class);
                                 startActivity(intent);
                                 break;
 

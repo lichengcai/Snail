@@ -121,7 +121,7 @@ public class QuestionActivity extends ActivityBase {
         addQa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuestionActivity.this, AnswerEditActivity.class);
+                Intent intent = new Intent(QuestionActivity.this, QuestionEditActivity.class);
                 QuestionActivity.this.startActivity(intent);
             }
         });
