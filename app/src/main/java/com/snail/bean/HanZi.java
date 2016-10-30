@@ -1,5 +1,17 @@
 package com.snail.bean;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+import com.snail.mvp.news.model.News;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 /**
  * Created by lichengcai on 2016/10/17.
  */
@@ -8,7 +20,7 @@ public class HanZi {
     private String zi;
     private String pinyin;
     private String bihua;
-    private String jijie;
+    private String jinjie;
     private String xiangjie;
 
 
@@ -18,9 +30,23 @@ public class HanZi {
                 "zi='" + zi + '\'' +
                 ", pinyin='" + pinyin + '\'' +
                 ", bihua='" + bihua + '\'' +
-                ", jijie='" + jijie + '\'' +
+                ", jijie='" + jinjie + '\'' +
                 ", xiangjie='" + xiangjie + '\'' +
                 '}';
+    }
+
+    public static HanZi getHanzi(String json) {
+        Gson gson = new Gson();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            ArrayList<HanZi> arrayList = gson.fromJson(jsonObject.getString("result"),new TypeToken<ArrayList<HanZi>>(){}.getType());
+            for (int i=0; i<arrayList.size(); i++) {
+                Log.d("getHanzi","---" + arrayList.get(i).toString());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public String getZi() {
@@ -48,11 +74,11 @@ public class HanZi {
     }
 
     public String getJijie() {
-        return jijie;
+        return jinjie;
     }
 
     public void setJijie(String jijie) {
-        this.jijie = jijie;
+        this.jinjie = jijie;
     }
 
     public String getXiangjie() {
