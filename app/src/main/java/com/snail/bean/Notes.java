@@ -7,14 +7,25 @@ public class Notes {
     private String title;
     private String createTime;
     private String body;
+    private String id;
 
-    public Notes(String title, String createTime, String body) {
+    public Notes(String title, String createTime, String body, String id) {
         this.title = title;
         this.createTime = createTime;
         this.body = body;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Notes() {
+
 
     }
 

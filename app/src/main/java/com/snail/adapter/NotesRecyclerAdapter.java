@@ -1,6 +1,7 @@
 package com.snail.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
@@ -8,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.avos.avoscloud.feedback.ThreadActivity;
+
 import com.snail.R;
 import com.snail.bean.Notes;
+import com.snail.mvp.news.listener.OnItemClickListener;
+import com.snail.mvp.news.listener.OnItemLongClickListener;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,8 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
     private Context context;
     private ArrayList<Notes> list;
     private MyViewHolder myViewHolder;
+    private OnItemLongClickListener mOnItemLongClickListener;
+    private OnItemClickListener mOnItemClickListener;
     public NotesRecyclerAdapter(Context context, ArrayList<Notes> list) {
         this.context = context;
         this.list = list;
@@ -33,11 +38,34 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
         return myViewHolder;
     }
 
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.mOnItemLongClickListener = onItemLongClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
+    }
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         myViewHolder.tv_title.setText(list.get(position).getTitle());
         myViewHolder.tv_time.setText(list.get(position).getCreateTime());
         myViewHolder.tv_body.setText(list.get(position).getBody());
+        myViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            String objId = list.get(position).getId();
+            @Override
+            public boolean onLongClick(View v) {
+                mOnItemLongClickListener.onItemLongClick(myViewHolder.itemView,position);
+                return false;
+            }
+        });
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListener.onItemClick(myViewHolder.itemView,position);
+                Intent intent = new Intent();
+                
+            }
+        });
     }
 
     @Override

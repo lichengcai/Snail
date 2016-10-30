@@ -28,6 +28,9 @@ public class NotesEditActivity extends ActivityBase{
     String descption;
     EditText editText;
     TextView completeText;
+    TextView cancelText;
+    String id = "";
+    String body = "";
     AVObject userAVObj = new AVObject("noteBean");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,16 @@ public class NotesEditActivity extends ActivityBase{
         initBindEvent();
         initBundle();
         title = getInputTitle();
+        initData();
+        initViewData();
     }
+
+    private void initData() {
+        body = getFromBundle("body");
+        title = getFromBundle("title");
+        id = getFromBundle("id");
+    }
+
 
     private void initBindEvent() {
         completeText.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +64,12 @@ public class NotesEditActivity extends ActivityBase{
                 completeTime=dateformat1.format(new Date());
                 Log.d("noteinput", "title " + title + "  descption:" + descption +" completeTime: "+ completeTime);
                 setNoteData(title, descption, completeTime);
+            }
+        });
+        cancelText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotesEditActivity.this.finish();
             }
         });
     }
@@ -80,15 +98,38 @@ public class NotesEditActivity extends ActivityBase{
     private void initView() {
         editText = (EditText) findViewById(R.id.edt_noteBody);
         completeText = (TextView) findViewById(R.id.tv_commit);
+        cancelText = (TextView) findViewById(R.id.tv_cancel);
+    }
+
+
+    private void initViewData() {
+        if ("".equals(id) || "".equals(title) || "".equals(body)) {
+            return;
+        }
+        editText.setText(body);
     }
 
 
     private void initBundle() {
         intent = getIntent();
+
         bundle = intent.getBundleExtra("bundle");
     }
 
     public String getInputTitle() {
+        if (bundle == null) {
+            return "";
+        }
         return bundle.getString("title");
     }
+
+    public String getFromBundle(String key) {
+        String value = "";
+        if (bundle == null) {
+            return "";
+        }
+        Log.d("keyname",key + ":" + bundle.getString(key));
+        return bundle.getString(key);
+    }
+
 }

@@ -72,8 +72,8 @@
         <activity
             android:name=".ui.activity.WordsActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
+        <activity android:name=".QuestionActivity"></activity>
     </application>
 
 </manifest>
