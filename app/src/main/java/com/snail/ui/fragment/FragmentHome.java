@@ -25,6 +25,7 @@ import com.snail.transforms.CubeOutTransformer;
 import com.snail.transforms.TransformerItem;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
+import com.snail.ui.activity.PhraseActivity;
 import com.snail.ui.activity.WordsActivity;
 import com.snail.widget.NetworkImageHolderView;
 
@@ -150,6 +151,10 @@ public class FragmentHome extends Fragment {
                             case 5:
                                 intent.setClass(getContext(), QuestionActivity.class);
                                 startActivity(intent);
+
+                            case 4:
+                                Intent intentPhrase = new Intent(getActivity(),PhraseActivity.class);
+                                startActivity(intentPhrase);
                                 break;
                             case 7:
                                 intent.setClass(getContext(), BookActivity.class);
