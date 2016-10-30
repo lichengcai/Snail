@@ -73,7 +73,10 @@
             android:name=".ui.activity.WordsActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-        <activity android:name=".QuestionActivity"></activity>
+        <activity android:name=".ui.activity.QuestionActivity" />
+        <activity android:name=".ui.activity.Answer" />
+        <activity android:name=".ui.activity.AnswerActivity" />
+        <activity android:name=".ui.activity.AnswerEditActivity"></activity>
     </application>
 
 </manifest>

@@ -16,18 +16,16 @@ import android.widget.Toast;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.snail.ui.activity.QuestionActivity;
 import com.snail.R;
 import com.snail.mvp.dictionary.ActivityChDictionary;
 import com.snail.mvp.news.ActivityNews;
 import com.snail.mvp.wrong.ActivityWrongEdit;
 import com.snail.transforms.CubeOutTransformer;
 import com.snail.transforms.TransformerItem;
-import com.snail.ui.activity.ActivitySimpleDetail;
-import com.snail.ui.activity.ActivityTest;
 import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
 import com.snail.ui.activity.WordsActivity;
-import com.snail.widget.LocalImageHolderView;
 import com.snail.widget.NetworkImageHolderView;
 
 import java.lang.reflect.Field;
@@ -147,6 +145,10 @@ public class FragmentHome extends Fragment {
                                 break;
                             case 3:
                                 intent.setClass(getContext(), NoteActivity.class);
+                                startActivity(intent);
+                                break;
+                            case 5:
+                                intent.setClass(getContext(), QuestionActivity.class);
                                 startActivity(intent);
                                 break;
                             case 7:

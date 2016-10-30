@@ -37,8 +37,8 @@ public class FragmentMore extends Fragment {
 
         TextView richView= (TextView) view.findViewById(R.id.rich_view);
         String html="<font color='red'>关于我</font> <br>";
-        html+="<font color='#0000FF'> <big> <i> 潘岩岩 </i> </big> <font>";
-        html+="<font color='@"+android.R.color.white+"'> <tt> <b> <big> <u> 潘岩岩 </u> </big> </b> </tt> </font> <br>";
+        html+="<font color='#0000FF'> <big> <i> 潘岩 </i> </big> <font>";
+        html+="<font color='@"+android.R.color.white+"'> <tt> <b> <big> <u> 潘岩 </u> </big> </b> </tt> </font> <br>";
         html+="<big> <a href='http://blog.csdn.net/a_mean'>我的博客:http://blog.csdn.net/a_mean </a> </big>";
 
         CharSequence charSequence = Html.fromHtml(html);

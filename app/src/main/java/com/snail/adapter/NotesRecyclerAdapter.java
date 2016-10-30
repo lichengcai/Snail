@@ -1,7 +1,6 @@
 package com.snail.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
@@ -62,8 +61,6 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
             @Override
             public void onClick(View v) {
                 mOnItemClickListener.onItemClick(myViewHolder.itemView,position);
-                Intent intent = new Intent();
-                
             }
         });
     }
