@@ -74,7 +74,7 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
         private ActivityWrongEdit wrongEdit;
 
         public WrongEditHandler(ActivityWrongEdit activityWrongEdit) {
-            ref = new WeakReference<ActivityWrongEdit>(activityWrongEdit);
+            ref = new WeakReference<>(activityWrongEdit);
             wrongEdit = ref.get();
         }
 
@@ -84,6 +84,9 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
             switch (msg.what) {
                 case MSG_GET_LUBAN_FILE_SUCCESS:
                     if (msg.obj != null) {
+                        if (wrongEdit.mLinearLoading != null) {
+                            wrongEdit.mLinearLoading.setVisibility(View.GONE);
+                        }
                         wrongEdit.mLuBanFile = (File) msg.obj;
                         wrongEdit.mImageWrong.setImageBitmap(BitmapFactory.decodeFile(wrongEdit.mImageFile.getAbsolutePath()));
                     }
@@ -109,11 +112,8 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
         mImageWrong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                intentToCamera();
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(intent,1);
-                }
+                intentToCamera();
+
             }
         });
     }
@@ -131,6 +131,9 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
                     mImageWrong.setImageBitmap(bitmap);
                     break;
                 case INTENT_TO_CAMERA:
+                    if (mLinearLoading != null) {
+                        mLinearLoading.setVisibility(View.VISIBLE);
+                    }
                     Luban.get(ActivityWrongEdit.this)
                             .load(mImageFile)
                             .putGear(Luban.THIRD_GEAR)
@@ -150,7 +153,6 @@ public class ActivityWrongEdit extends ActivityBase implements WrongView,BoomMen
 
                                 }
                             }).launch();
-//                    mImageWrong.setImageBitmap(BitmapFactory.decodeFile(mImageFile.getAbsolutePath()));
                     break;
             }
         }

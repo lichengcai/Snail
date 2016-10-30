@@ -1,6 +1,7 @@
 package com.snail.ui.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +15,9 @@ import android.widget.Toast;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.snail.R;
+import com.snail.mvp.dictionary.ActivityChDictionary;
 import com.snail.mvp.news.ActivityNews;
 import com.snail.mvp.wrong.ActivityWrongEdit;
 import com.snail.transforms.CubeOutTransformer;
@@ -25,6 +28,7 @@ import com.snail.ui.activity.BookActivity;
 import com.snail.ui.activity.NoteActivity;
 import com.snail.ui.activity.WordsActivity;
 import com.snail.widget.LocalImageHolderView;
+import com.snail.widget.NetworkImageHolderView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -41,7 +45,8 @@ public class FragmentHome extends Fragment {
     @BindView(R.id.banner)
     ConvenientBanner mBanner;
 
-    private ArrayList<Integer> localImages = new ArrayList<Integer>();
+    private ArrayList<String> netImages = new ArrayList<>();
+    private ArrayList<Integer> localImages = new ArrayList<>();
     private  GridView gridview;
     @Nullable
     @Override
@@ -58,14 +63,31 @@ public class FragmentHome extends Fragment {
         for (int i=0; i<7; i++) {
             localImages.add(getResId("ic_test_" + i, R.drawable.class));
         }
-        mBanner.setPages(new CBViewHolderCreator<LocalImageHolderView>() {
-
+        netImages.add("http://www.koo.cn/upload/201610122111_1476277886822570.jpg");
+        netImages.add("http://www.koo.cn/upload/201610121100_1476241200591121.jpg");
+        netImages.add("http://www.koo.cn/upload/201609291157_1475121429590893.jpg");
+        mBanner.setPages(new CBViewHolderCreator<NetworkImageHolderView>(){
             @Override
-            public LocalImageHolderView createHolder() {
-                return new LocalImageHolderView();
+            public NetworkImageHolderView createHolder() {
+                return new NetworkImageHolderView();
             }
-        },localImages)
-        .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused});
+        },netImages).setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused})
+        .setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                String url = null;
+                if (position == 0) {
+                    url = "http://www.koo.cn/zhuanti/ss_wap/";
+                }else if (position ==1) {
+                    url = "http://www.koo.cn/zhuanti/17gkdgjx_wap/";
+                }else if (position == 2) {
+                    url = "http://www.koo.cn/zhuanti/17gkqj_wap/";
+                }
+                Uri uri = Uri.parse(url);
+                Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(it);
+            }
+        });
         mBanner.startTurning(3000);//设置轮播开始自动循环
         mBanner.setScrollDuration(2000);//设置滑动速度
         try {
@@ -116,7 +138,7 @@ public class FragmentHome extends Fragment {
                                 startActivity(intent1);
                                 break;
                             case 1:
-                                Intent intent2 = new Intent(getActivity(),ActivityTest.class);
+                                Intent intent2 = new Intent(getActivity(),ActivityChDictionary.class);
                                 startActivity(intent2);
                                 break;
                             case 2:
@@ -155,7 +177,7 @@ public class FragmentHome extends Fragment {
         // map2 今日闯关
         HashMap<String, Object> map2 = new HashMap<String, Object>();
         map2.put("ItemImage", R.drawable.palace_2);
-        map2.put("ItemText", "今日闯关");
+        map2.put("ItemText", "新华字典");
         meumList.add(map2);
 
 
@@ -175,7 +197,7 @@ public class FragmentHome extends Fragment {
         // map5 题库
         HashMap<String, Object> map5 = new HashMap<String, Object>();
         map5.put("ItemImage", R.drawable.palace_5);
-        map5.put("ItemText", "题库");
+        map5.put("ItemText", "成语查询");
         meumList.add(map5);
 
         // map6 题库

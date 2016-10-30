@@ -61,8 +61,6 @@ public class FragmentWrite extends Fragment implements WrongView{
     RelativeLayout mLayout_fail;
     @BindView(R.id.layout_loading)
     RelativeLayout mLayout_loading;
-    @BindView(R.id.mFloatingActionButton)
-    FloatingActionButton mFloatingActionButton;
 
     private TextView mText_hint;
     private WriteHandler mHandler = new WriteHandler(this);
@@ -153,12 +151,6 @@ public class FragmentWrite extends Fragment implements WrongView{
             @Override
             public void onRefresh() {
                 mPresenter.queryWrongBean();
-            }
-        });
-        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ActivityWrongEdit.class));
             }
         });
     }
