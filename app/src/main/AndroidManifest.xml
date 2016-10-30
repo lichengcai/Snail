@@ -76,17 +76,17 @@
         <activity android:name=".ui.activity.QuestionActivity" />
         <activity android:name=".ui.activity.Answer" />
         <activity android:name=".ui.activity.AnswerActivity" />
-        <activity android:name=".ui.activity.AnswerEditActivity"></activity>
-            android:screenOrientation="portrait"
-            />
+        <activity android:name=".ui.activity.AnswerEditActivity" />
+        android:screenOrientation="portrait"
+        />
         <activity
             android:name=".ui.activity.PhraseActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".QuestionActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".QuestionActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.QuestionEditActivity"></activity>
     </application>
 
 </manifest>

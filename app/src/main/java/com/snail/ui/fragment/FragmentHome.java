@@ -151,6 +151,7 @@ public class FragmentHome extends Fragment {
                             case 5:
                                 intent.setClass(getContext(), QuestionActivity.class);
                                 startActivity(intent);
+                                break;
 
                             case 4:
                                 Intent intentPhrase = new Intent(getActivity(),PhraseActivity.class);
