@@ -1,6 +1,8 @@
 package com.snail.mvp.dictionary;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +17,6 @@ import com.snail.ui.activity.ActivityBase;
 import com.snail.utils.HttpUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +43,23 @@ public class ActivityChDictionary extends ActivityBase {
 
     private String mKey;
     private String url = "http://api.avatardata.cn/XinHuaZiDian/LookUp?key=222d4f0506d04a0fa56e12c196fdd7df&content=";
+
+    private Handler mHandler  = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    HanZi hanZi = (HanZi) msg.obj;
+                    mTextPinyin.setText("拼音: " + hanZi.getPinyin());
+                    mTextJinjie.setText("简介：" + hanZi.getJijie());
+                    mTextXiangjie.setText("详解：" + hanZi.getXiangjie());
+                    mTextBihua.setText("笔画：" + hanZi.getBihua());
+
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +88,10 @@ public class ActivityChDictionary extends ActivityBase {
             @Override
             public void success(String json) {
                 Log.d("tag","success---" + json);
+                HanZi hanZi = HanZi.getHanzi(json);
+                Log.d("getChinese","toString---" + hanZi.toString());
 
+                mHandler.obtainMessage(0,hanZi).sendToTarget();
             }
 
             @Override
