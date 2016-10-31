@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.snail.ui.activity.ActivityFamous;
 import com.snail.ui.activity.QuestionActivity;
 import com.snail.R;
 import com.snail.mvp.dictionary.ActivityChDictionary;
@@ -155,7 +156,7 @@ public class FragmentHome extends Fragment {
                                 break;
                             case 6:
                                 // 暂时放这
-                                intent.setClass(getContext(), QuestionEditActivity.class);
+                                intent.setClass(getContext(), ActivityFamous.class);
                                 startActivity(intent);
                                 break;
 
@@ -224,7 +225,7 @@ public class FragmentHome extends Fragment {
         // map7 题库
         HashMap<String, Object> map7 = new HashMap<String, Object>();
         map7.put("ItemImage", R.drawable.palace_7);
-        map7.put("ItemText", "轻松一下");
+        map7.put("ItemText", "名人名言查询");
         meumList.add(map7);
 
         // map8 题库

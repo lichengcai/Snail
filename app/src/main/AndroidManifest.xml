@@ -74,19 +74,17 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.QuestionActivity" />
-        <activity android:name=".ui.activity.Answer" />
         <activity android:name=".ui.activity.AnswerActivity" />
         <activity android:name=".ui.activity.AnswerEditActivity" />
-        android:screenOrientation="portrait"
-        />
         <activity
             android:name=".ui.activity.PhraseActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".QuestionActivity"
+            android:name=".ui.activity.ActivityFamous"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.QuestionEditActivity"></activity>
+        <activity android:name=".ui.activity.QuestionEditActivity"/>
     </application>
 
 </manifest>
