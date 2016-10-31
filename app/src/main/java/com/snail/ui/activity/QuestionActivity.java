@@ -102,7 +102,7 @@ public class QuestionActivity extends ActivityBase {
                     quesion.setTag(avobj.get("tag").toString());
                     quesion.setDesc(avobj.get("desc").toString());
                     quesion.setId(avobj.getObjectId());
-                    quesion.setCreateTime(avobj.get("createTime").toString());
+                    quesion.setCreateTime(avobj.get("creatTime").toString());
                     Log.d("quesionstring",quesion.toString());
                     questionList.add(quesion);
                 }

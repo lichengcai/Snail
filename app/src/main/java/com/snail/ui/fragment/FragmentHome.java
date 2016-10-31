@@ -225,7 +225,7 @@ public class FragmentHome extends Fragment {
         // map7 题库
         HashMap<String, Object> map7 = new HashMap<String, Object>();
         map7.put("ItemImage", R.drawable.palace_7);
-        map7.put("ItemText", "名人名言查询");
+        map7.put("ItemText", "名人名言");
         meumList.add(map7);
 
         // map8 题库

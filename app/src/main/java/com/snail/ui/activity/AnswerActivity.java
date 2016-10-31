@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +27,13 @@ import com.snail.mvp.news.listener.OnItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnswerActivity extends AppCompatActivity {
+public class AnswerActivity extends ActivityBase {
 
     String id, desc,creatTime,tag;
     Intent intent;
     Bundle bundle;
     TextView qaDesc,addAns;
+    ImageView backBtn;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     Handler handler;
@@ -86,6 +88,12 @@ public class AnswerActivity extends AppCompatActivity {
                 AnswerActivity.this.startActivity(intent);
             }
         });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnswerActivity.this.finish();
+            }
+        });
     }
 
     private void requesData() {
@@ -121,6 +129,8 @@ public class AnswerActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_answers);
         recyclerView.setLayoutManager(layoutManager);
         addAns = (TextView) findViewById(R.id.add_ans);
+        backBtn = (ImageView) findViewById(R.id.img_back);
+        initBindEvent();
     }
 
     private void setBaseData() {
