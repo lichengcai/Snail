@@ -10,14 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.snail.R;
-import com.snail.bean.Book;
-import com.snail.bean.Notes;
 import com.snail.bean.Word;
 import com.snail.utils.Player;
 
 import java.util.ArrayList;
-
-import static android.view.LayoutInflater.*;
 
 /**
  * Created by zhangshibiao on 16/10/15.
@@ -55,12 +51,6 @@ public class WordAdapter extends RecyclerView.Adapter{
             ((MyViewHolder) holder).word_sound.setText(list.get(position).getSound());
             ((MyViewHolder) holder).word_symbol.setText(list.get(position).getSymbol());
             final String playUrl = list.get(position).getSound();
-//            ((MyViewHolder) holder).word_voice.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    player.playUrl(playUrl);
-//                }
-//            });
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,7 +78,6 @@ public class WordAdapter extends RecyclerView.Adapter{
             word_symbol = (TextView) itemView.findViewById(R.id.word_symbol);
             word_sound = (TextView) itemView.findViewById(R.id.word_sound);
             word_voice = (ImageView) itemView.findViewById(R.id.word_voice);
-
         }
     }
 }
