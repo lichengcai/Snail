@@ -100,7 +100,7 @@ public class ActivityLogin extends ActivityBase {
         inputUserName = (EditText) findViewById(R.id.user_name);
         inputUserPwd = (EditText) findViewById(R.id.user_pwd);
 
-        inputUserName.setText("shibiaoz2".toCharArray(), 0, "shibiaoz2".length());
+        inputUserName.setText("panyan".toCharArray(), 0, "panyan".length());
         inputUserPwd.setText("12345".toCharArray(), 0, "12345".length());
 
         loginBtn = (Button) findViewById(R.id.login);
