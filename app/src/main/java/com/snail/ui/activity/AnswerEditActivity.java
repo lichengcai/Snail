@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
@@ -14,11 +15,12 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
 import com.snail.R;
 
-public class AnswerEditActivity extends AppCompatActivity {
+public class AnswerEditActivity extends ActivityBase {
 
     EditText qaDesc;
     Button commitBtn;
     String parentId,desc;
+    ImageView backBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,13 @@ public class AnswerEditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 commitAnswer();
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnswerEditActivity.this.finish();
             }
         });
     }
@@ -75,5 +84,6 @@ public class AnswerEditActivity extends AppCompatActivity {
     private void initView() {
         qaDesc = (EditText) findViewById(R.id.qa_desc);
         commitBtn = (Button) findViewById(R.id.commit_btn);
+        backBtn = (ImageView) findViewById(R.id.img_back);
     }
 }

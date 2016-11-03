@@ -36,11 +36,12 @@ public class FragmentMore extends Fragment {
         View view = inflater.inflate(R.layout.fragment_more,container,false);
 
         TextView richView= (TextView) view.findViewById(R.id.rich_view);
-        String html="<font color='red'>关于我</font> <br>";
-        html+="<font color='#0000FF'> <big> <i> 潘岩 </i> </big> <font>";
-        html+="<font color='@"+android.R.color.white+"'> <tt> <b> <big> <u> 潘岩 </u> </big> </b> </tt> </font> <br>";
-        html+="<big> <a href='http://blog.csdn.net/a_mean'>我的博客:http://blog.csdn.net/a_mean </a> </big>";
-
+        String html="<font color='red'> <big>关于我 </big></font> <br>";
+        html+="<font color='#0000FF'> <big> <i> 潘岩 </i> </big> <font><br>";
+        html+="<font color='@"+android.R.color.white+"'> <tt> <b> <big> <u> 一名高中生 </u> </big> </b> </tt> </font> <br>";
+        html += "<font color='red'><big>Snail 的创意来源蜗牛</big></font> <br>";
+        html += "<font color='red'><big>学习就像蜗牛一样,一点点的积累</big></font> <br>";
+        html += "<font color='red'><big>我要一步一步往上爬</big></font> <br>";
         CharSequence charSequence = Html.fromHtml(html);
         richView.setText(charSequence);
 
