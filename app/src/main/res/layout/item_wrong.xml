@@ -7,12 +7,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/image_wrong"
             android:src="@drawable/ic_test_3"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="170dp" />
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:src="@drawable/search_delete"
+            android:padding="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+
 
         <TextView
             android:id="@+id/text_title"
