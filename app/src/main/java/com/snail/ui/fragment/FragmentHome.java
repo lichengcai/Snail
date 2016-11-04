@@ -17,6 +17,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.snail.ui.activity.ActivityFamous;
+import com.snail.ui.activity.ActivityTest;
 import com.snail.ui.activity.QuestionActivity;
 import com.snail.R;
 import com.snail.mvp.dictionary.ActivityChDictionary;

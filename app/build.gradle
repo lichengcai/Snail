@@ -55,6 +55,8 @@ dependencies {
 
     //爆炸菜单
     compile 'com.nightonke:boommenu:1.0.9'
+
+    compile 'com.github.andyxialm:TyperEditText:1.0.0'
 }
 
 repositories {
@@ -62,4 +64,6 @@ repositories {
     maven {
         url "https://jitpack.io"
     }
+
+    maven { url "https://jitpack.io" }
 }

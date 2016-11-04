@@ -1,41 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:typer="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <cn.refactor.typer.TyperEditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:onClick="camera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button
-            android:onClick="real"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:layout_height="100dp"
+        typer:characterWriteInterval="200"
+        typer:punctuationWriteInterval="600"
+        typer:touchable="true"/>
 
-        <ImageView
-            android:id="@+id/image"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
-        <ImageView
-            android:id="@+id/image_real"
-            android:src="@drawable/cat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
-    <com.nightonke.boommenu.BoomMenuButton
-        android:id="@+id/boom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        app:boom_inActionBar="false"
-        />
-
-</FrameLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+</LinearLayout>
