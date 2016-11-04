@@ -5,4 +5,5 @@ package com.snail.bean;
  */
 
 public class First {
+    public void master();
 }
