@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 
 public class ActivitySplash extends ActivityBase {
     @BindView(R.id.pv_1)
-    com.snail.widget.particleview.ParticleView mParticleView;
+    ParticleView mParticleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
