@@ -18,6 +18,7 @@
             android:layout_height="170dp" />
 
         <ImageView
+            android:id="@+id/img_delete"
             android:layout_alignParentRight="true"
             android:src="@drawable/search_delete"
             android:padding="15dp"

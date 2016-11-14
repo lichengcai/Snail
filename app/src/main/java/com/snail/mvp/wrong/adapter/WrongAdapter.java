@@ -34,13 +34,21 @@ public class WrongAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof WrongHolder) {
             WrongBean wrongBean = mData.get(position);
             ((WrongHolder) holder).text_title.setText("错误标签：" + wrongBean.getTitle());
             ((WrongHolder) holder).text_content.setText("错误描述：" + wrongBean.getContent());
             Log.d("onBindViewHolder","imageUrl---"+ wrongBean.getImgUrl());
             ImageLoader.getInstance().displayImage(mContext,wrongBean.getImgUrl(),((WrongHolder) holder).imageView);
+
+            ((WrongHolder) holder).img_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mData.remove(position);
+                    notifyItemChanged(position);
+                }
+            });
         }
     }
 
@@ -53,12 +61,14 @@ public class WrongAdapter extends RecyclerView.Adapter {
         private ImageView imageView;
         private TextView text_title;
         private TextView text_content;
+        private ImageView img_delete;
 
-        public WrongHolder(View itemView) {
+        WrongHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.image_wrong);
             text_title = (TextView) itemView.findViewById(R.id.text_title);
             text_content = (TextView) itemView.findViewById(R.id.text_content);
+            img_delete = (ImageView) itemView.findViewById(R.id.img_delete);
         }
     }
 }

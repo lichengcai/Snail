@@ -1,8 +1,5 @@
 package com.snail.mvp.wrong.model;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.util.Log;
 
 import com.avos.avoscloud.AVException;
@@ -13,13 +10,10 @@ import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.ProgressCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.snail.mvp.listener.OnQueryListener;
-import com.snail.mvp.listener.OnUploadFileListener;
 import com.snail.mvp.listener.OnUploadListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

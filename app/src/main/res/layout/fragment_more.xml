@@ -3,6 +3,19 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:background="@color/bg_activity_splash"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:gravity="center"
+            android:text="关于我"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
     <TextView
         android:id="@+id/rich_view"
         android:text="aa"
