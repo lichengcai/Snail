@@ -50,6 +50,10 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activity.Book2Activity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".mvp.news.ActivityNews"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />

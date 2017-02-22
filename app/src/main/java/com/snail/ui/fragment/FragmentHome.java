@@ -18,6 +18,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.snail.ui.activity.ActivityFamous;
 import com.snail.ui.activity.ActivityTest;
+import com.snail.ui.activity.Book2Activity;
 import com.snail.ui.activity.QuestionActivity;
 import com.snail.R;
 import com.snail.mvp.dictionary.ActivityChDictionary;
@@ -166,7 +167,7 @@ public class FragmentHome extends Fragment {
                                 startActivity(intentPhrase);
                                 break;
                             case 7:
-                                intent.setClass(getContext(), BookActivity.class);
+                                intent.setClass(getContext(), Book2Activity.class);
                                 startActivity(intent);
                                 break;
                             case 8:
