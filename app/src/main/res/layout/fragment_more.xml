@@ -1,38 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:background="@color/bg_activity_splash"
+        android:id="@+id/linear_top"
+        android:background="@color/black"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="45dp">
 
         <TextView
             android:gravity="center"
             android:text="关于我"
+            android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
-    <TextView
-        android:id="@+id/rich_view"
-        android:text="aa"
-        android:layout_centerInParent="true"
+    <LinearLayout
+        android:id="@+id/linear_summary"
+        android:layout_below="@+id/linear_top"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@mipmap/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/text_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <!--<Button-->
-        <!--android:id="@+id/player"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:text="test"-->
-        <!--android:layout_height="match_parent" />-->
-    <!--<LinearLayout android:orientation="horizontal"-->
-        <!--android:layout_width="fill_parent" android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="20dip">-->
-        <!--<SeekBar android:paddingRight="10dip" android:layout_gravity="center_vertical"-->
-            <!--android:paddingLeft="10dip" android:layout_weight="1.0"-->
-            <!--android:layout_height="wrap_content" android:layout_width="wrap_content"-->
-            <!--android:id="@+id/skbProgress" android:max="100"></SeekBar>-->
-    <!--</LinearLayout>-->
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="制作：宿城一中   潘岩"
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="日期：2017/2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </RelativeLayout>

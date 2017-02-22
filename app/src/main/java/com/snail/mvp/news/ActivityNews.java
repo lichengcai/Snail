@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.snail.R;
 import com.snail.ui.activity.ActivityBase;
+import com.snslibrary.TestSns;
 
 import java.util.ArrayList;
 import java.util.List;

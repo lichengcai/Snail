@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bm.library.PhotoView;
 import com.snail.R;
 import com.snail.mvp.wrong.model.WrongBean;
 import com.snail.utils.ImageLoader;
@@ -58,14 +59,15 @@ public class WrongAdapter extends RecyclerView.Adapter {
     }
 
     private class WrongHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
+        private PhotoView imageView;
         private TextView text_title;
         private TextView text_content;
         private ImageView img_delete;
 
         WrongHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.image_wrong);
+            imageView = (PhotoView) itemView.findViewById(R.id.image_wrong);
+            imageView.enable();
             text_title = (TextView) itemView.findViewById(R.id.text_title);
             text_content = (TextView) itemView.findViewById(R.id.text_content);
             img_delete = (ImageView) itemView.findViewById(R.id.img_delete);

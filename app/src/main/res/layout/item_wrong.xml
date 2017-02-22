@@ -10,13 +10,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/image_wrong"
-            android:src="@drawable/ic_test_3"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="170dp" />
+        <!--<ImageView-->
+            <!--android:id="@+id/image_wrong"-->
+            <!--android:src="@drawable/ic_test_3"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="170dp" />-->
 
+        <com.bm.library.PhotoView
+            android:id="@+id/image_wrong"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            />
         <ImageView
             android:id="@+id/img_delete"
             android:layout_alignParentRight="true"
