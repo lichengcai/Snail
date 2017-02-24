@@ -66,9 +66,9 @@ public class FragmentHome extends Fragment {
         for (int i=0; i<7; i++) {
             localImages.add(getResId("ic_test_" + i, R.drawable.class));
         }
-        netImages.add("http://www.koo.cn/upload/201610122111_1476277886822570.jpg");
-        netImages.add("http://www.koo.cn/upload/201610121100_1476241200591121.jpg");
-        netImages.add("http://www.koo.cn/upload/201609291157_1475121429590893.jpg");
+        netImages.add("http://www.ahscyz.cn/xxhsd/UploadFiles_5809/201605/2016051420552765.jpg");
+        netImages.add("http://www.ahscyz.cn/xxhsd/UploadFiles_5809/201605/2016051415232666.jpg");
+        netImages.add("http://www.ahscyz.cn/xxhsd/UploadFiles_5809/201605/2016051415043486.jpg");
         mBanner.setPages(new CBViewHolderCreator<NetworkImageHolderView>(){
             @Override
             public NetworkImageHolderView createHolder() {
@@ -80,11 +80,11 @@ public class FragmentHome extends Fragment {
             public void onItemClick(int position) {
                 String url = null;
                 if (position == 0) {
-                    url = "http://www.koo.cn/zhuanti/ss_wap/";
+                    url = "http://www.ahscyz.cn/xxhsd/ShowArticle.asp?ArticleID=2366";
                 }else if (position ==1) {
-                    url = "http://www.koo.cn/zhuanti/17gkdgjx_wap/";
+                    url = "http://www.ahscyz.cn/xxhsd/ShowArticle.asp?ArticleID=2360";
                 }else if (position == 2) {
-                    url = "http://www.koo.cn/zhuanti/17gkqj_wap/";
+                    url = "http://www.ahscyz.cn/xxhsd/ShowArticle.asp?ArticleID=2358";
                 }
                 Uri uri = Uri.parse(url);
                 Intent it = new Intent(Intent.ACTION_VIEW, uri);

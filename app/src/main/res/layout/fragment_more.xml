@@ -22,7 +22,7 @@
         android:id="@+id/linear_summary"
         android:layout_below="@+id/linear_top"
         android:gravity="center_horizontal"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
