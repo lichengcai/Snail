@@ -42,7 +42,7 @@ public class ActivityChDictionary extends ActivityBase {
     Button mBtn_seach;
 
     private String mKey;
-    private String url = "http://api.avatardata.cn/XinHuaZiDian/LookUp?key=222d4f0506d04a0fa56e12c196fdd7df&content=";
+    private String url = "http://api.avatardata.cn/XinHuaZiDian/LookUp?key=cefbfb39bf524df98302e7fefab2e49f&content=";
 
     private Handler mHandler  = new Handler(){
         @Override

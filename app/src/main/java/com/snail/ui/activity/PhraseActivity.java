@@ -39,7 +39,7 @@ public class PhraseActivity extends ActivityBase {
     private String mKey;
     private PhraseAdapter mAdapter;
 
-    private String url = "http://api.avatardata.cn/ChengYu/Search?key=d59ef2d8a86f41378eab518b84ca2566&keyWord=";
+    private String url = "http://api.avatardata.cn/ChengYu/Search?key=c2a69e2219cc4ac996f61197b5ea1376&keyWord=";
     private Handler mHander = new Handler() {
         @Override
         public void handleMessage(Message msg) {

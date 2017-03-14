@@ -23,6 +23,7 @@ public class Book2Activity extends ActivityBase {
         setContentView(R.layout.activity_book2);
         ButterKnife.bind(this);
         mWebView.loadUrl("https://book.douban.com/tag");
+//        mWebView.loadUrl("http://m.wufazhuce.com/article/1961");
 //        mWebView.loadUrl("http://baidu.com");
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
